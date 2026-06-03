@@ -136,4 +136,4 @@ git commit -m "feat: Descripción clara"
 git push origin main
 ```
 
-¡Eso es todo lo que necesitas! 🎉
+
