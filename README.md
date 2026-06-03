@@ -1,4 +1,4 @@
- E-commerce de Belleza
+ -E-commerce de Belleza
 
 Proyecto de e-commerce especializado en productos de belleza y cuidado personal.
 
