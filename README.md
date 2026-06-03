@@ -1,19 +1,8 @@
-# BeautyShop - E-commerce de Belleza
+ E-commerce de Belleza
 
 Proyecto de e-commerce especializado en productos de belleza y cuidado personal.
 
 ---
-
-## 📋 Estándares de Equipo
-
-### Idioma de Desarrollo: **JavaScript (Recomendado para Principiantes)**
-
-#### ¿Por qué JavaScript?
-- **Fácil de aprender**: Sintaxis clara y similar al inglés
-- **Versátil**: Funciona en frontend (navegador) y backend
-- **Comunidad grande**: Miles de recursos y tutoriales
-- **Perfecto para comenzar**: No necesitas compilar código
-- **Interactividad inmediata**: Ves resultados al instante en el navegador
 
 ---
 
