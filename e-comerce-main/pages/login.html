@@ -14,16 +14,18 @@
 
 <body class="pagina-login">
 
+  <!-- Blobs decorativos animados -->
   <div class="blob-container">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
   </div>
 
+  <!-- Tarjeta principal del login -->
   <div class="contenedor-login">
 
     <div class="login-header">
       <div class="login-logo">
-        <i class="fa-solid fa-sparkles"></i>
+        <i class="fa-solid fa-gem"></i>
         <span>BeautyShop</span>
       </div>
 
@@ -41,7 +43,6 @@
           <i class="fa-regular fa-envelope"></i>
           Correo electrónico
         </label>
-
         <input type="email" id="email" placeholder="ejemplo@correo.com" required>
       </div>
 
@@ -50,10 +51,8 @@
           <i class="fa-solid fa-lock"></i>
           Contraseña
         </label>
-
         <div class="password-wrapper">
           <input type="password" id="password" placeholder="••••••••" required>
-
           <button type="button" id="toggle-password" class="btn-toggle-password">
             <i class="fa-regular fa-eye"></i>
           </button>
@@ -79,12 +78,14 @@
 
   </div>
 
+  <!-- Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/login.js"></script>
   <script>
     const btn = document.getElementById("toggle-password");
     const pass = document.getElementById("password");
 
     btn.addEventListener("click", () => {
-
       if (pass.type === "password") {
         pass.type = "text";
         btn.innerHTML = '<i class="fa-regular fa-eye-slash"></i>';
@@ -92,7 +93,6 @@
         pass.type = "password";
         btn.innerHTML = '<i class="fa-regular fa-eye"></i>';
       }
-
     });
   </script>
 
