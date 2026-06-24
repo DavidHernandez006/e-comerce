@@ -1,36 +1,91 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrito - BeautyShop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - BeautyShop</title>
+
+```
+<!-- CSS -->
+<link rel="stylesheet" href="../css/estilos.css">
+```
+
 </head>
+
 <body>
 
-  <div class="contenedor-carrito">
+```
+<div class="contenedor-carrito">
+
+    <!-- ENCABEZADO -->
     <header class="encabezado-carrito">
-      <h1>Carrito de compras</h1>
-      <a href="../index.html">← Seguir comprando</a>
+
+        <h1>🛒 Carrito de Compras</h1>
+
+        <a href="../index.html">
+            ← Seguir comprando
+        </a>
+
     </header>
 
-    <p id="carrito-vacio" class="mensaje-carrito-vacio" 
-    
-    hidden>Tu carrito está vacío.</p>
+    <!-- MENSAJE CARRITO VACÍO -->
+    <p
+        id="carrito-vacio"
+        class="mensaje-carrito-vacio"
+        hidden>
+        Tu carrito está vacío.
+    </p>
 
-    <div id="lista-carrito" class="lista-carrito"></div>
+    <!-- PRODUCTOS -->
+    <div
+        id="lista-carrito"
+        class="lista-carrito">
+    </div>
 
+    <!-- RESUMEN -->
     <aside class="resumen-carrito">
-      <h2>Resumen</h2>
-      <p>Subtotal: <span id="subtotal-carrito">$0</span></p>
-      <p>Descuentos: <span id="descuento-carrito">$0</span></p>
-      <p class="total-carrito">Total: <strong id="total-carrito">$0</strong></p>
-      <button type="button" id="boton-comprar" disabled>Finalizar compra</button>
-      <button type="button" id="boton-vaciar">Vaciar carrito</button>
-    </aside>
-  </div>
 
-  <script src="../js/data.js"></script>
-  <script src="../js/carrito.js"></script>
+        <h2>Resumen del pedido</h2>
+
+        <p>
+            <span>Subtotal:</span>
+            <span id="subtotal-carrito">$0</span>
+        </p>
+
+        <p>
+            <span>Descuentos:</span>
+            <span id="descuento-carrito">$0</span>
+        </p>
+
+        <p class="total-carrito">
+            <span>Total:</span>
+            <strong id="total-carrito">$0</strong>
+        </p>
+
+        <button
+            type="button"
+            id="boton-comprar"
+            disabled>
+            Finalizar compra
+        </button>
+
+        <button
+            type="button"
+            id="boton-vaciar">
+            Vaciar carrito
+        </button>
+
+    </aside>
+
+</div>
+
+<!-- SCRIPTS -->
+<script src="../js/data.js"></script>
+<script src="../js/carrito.js"></script>
+```
 
 </body>
+
 </html>

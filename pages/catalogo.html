@@ -1,2 +1,57 @@
-<!-- Catálogo de productos -->
-<!-- Aquí va: Grid de productos, filtros por categoría, buscador, ordenamiento de precios -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | BeautyShop</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body class="pagina-catalogo">
+
+    <main class="contenedor-catalogo">
+
+        <div class="cabecera-catalogo">
+
+            <h1>
+                <i class="fa-solid fa-bag-shopping"></i>
+                Catálogo BeautyShop
+            </h1>
+
+            <p>
+                Explora nuestros productos de belleza y cuidado personal.
+            </p>
+
+        </div>
+
+        <!-- FILTROS (opcionales para después) -->
+        <section class="barra-catalogo">
+
+            <input
+                type="text"
+                placeholder="Buscar producto..."
+                id="buscador-productos">
+
+        </section>
+
+        <!-- AQUÍ SE INSERTAN LOS PRODUCTOS DESDE JS -->
+        <section
+            id="catalogo"
+            class="grid-catalogo">
+
+        </section>
+
+    </main>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/carrito.js"></script>
+    <script src="../js/catalogo.js"></script>
+
+</body>
+
+</html>
