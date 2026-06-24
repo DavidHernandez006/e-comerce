@@ -457,6 +457,16 @@ const resenas = [
 ];
 
 // ------------------------------------------------------------
+// CARRITO DE PRUEBA (items iniciales para la demo)
+// Se usa solo si no hay carrito guardado en localStorage
+// ------------------------------------------------------------
+const carritoInicial = [
+  { productoId: 1, cantidad: 1 },
+  { productoId: 5, cantidad: 2 },
+  { productoId: 12, cantidad: 1 },
+];
+
+// ------------------------------------------------------------
 // ÓRDENES / HISTORIAL DE COMPRAS DE PRUEBA
 // ------------------------------------------------------------
 const ordenes = [

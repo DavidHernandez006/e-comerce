@@ -77,23 +77,3 @@ function obtenerNombreCategoria(idCategoria) {
   const categoria = categorias.find(cat => cat.id === idCategoria);
   return categoria ? categoria.nombre : "General";
 }
-
-/**
- * Función para agregar un producto al carrito (versión inicial)
- */
-function agregarAlCarrito(idProducto) {
-  console.log("Agregando producto al carrito con ID:", idProducto);
-  // Aquí más adelante llamaremos a la lógica de carrito.js
-  alert("Producto agregado al carrito! (Lógica en desarrollo)");
-}
-
-/**
- * Función para actualizar el numerito del carrito
- */
-function actualizarContadorCarrito() {
-  const contador = document.querySelector(".contador-carrito");
-  if (contador) {
-    // Por ahora lo dejamos en 0, luego leeremos del localStorage
-    contador.textContent = "0";
-  }
-}
