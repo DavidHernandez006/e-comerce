@@ -1,0 +1,109 @@
+<!-- Página de inicio principal del e-commerce -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeautyShop</title>
+</head>
+<body>
+
+  <!-- Contenedor principal que divide barra lateral y contenido -->
+  <div class="contenedor-principal">
+
+    <!-- Barra lateral izquierda con logo, navegación y acciones -->
+    <aside class="barra-lateral">
+
+      <!-- Logo de la tienda -->
+      <div class="logo">
+        <h1 class="logo-nombre"></h1>         <!-- Nombre de la marca -->
+        <p class="logo-slogan"></p>            <!-- Slogan debajo del nombre -->
+      </div>
+
+      <!-- Menú de navegación principal -->
+      <nav class="navegacion-lateral">
+        <ul class="lista-navegacion">
+          <li class="opcion-navegacion"><a href="#">Catálogo</a></li>
+          <li class="opcion-navegacion"><a href="#">Nueva Colección</a></li>
+          <li class="opcion-navegacion"><a href="#">Ofertas</a></li>
+          <li class="opcion-navegacion"><a href="#">Más Vendidos</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de soporte al fondo de la barra lateral -->
+      <div class="acciones-soporte">
+        <a href="#" class="enlace-soporte">Help Center</a>
+        <a href="#" class="enlace-soporte">Shipping</a>
+        <!-- Botón para unirse o registrarse -->
+        <button class="boton-unirse"></button>
+      </div>
+
+    </aside>
+
+    <!-- Zona principal donde va todo el contenido de la página -->
+    <main class="contenido-principal">
+
+      <!-- Barra superior con buscador, carrito e inicio de sesión -->
+      <header class="barra-superior">
+        <!-- Campo de búsqueda de productos -->
+        <input type="search" class="campo-busqueda" placeholder="Buscar producto...">
+
+        <!-- Icono del carrito con contador de artículos -->
+        <div class="icono-carrito">
+          <img src="" alt="Carrito de compras">
+          <span class="contador-carrito"></span>  <!-- Número de artículos en carrito -->
+        </div>
+
+        <!-- Botón para iniciar sesión -->
+        <a href="pages/login.html" class="boton-iniciar-sesion"></a>
+      </header>
+
+      <!-- Sección hero: banner principal con imagen y llamado a la acción -->
+      <section class="seccion-hero">
+        <div class="banner-principal">
+          <h2 class="titulo-hero"></h2>          <!-- Título llamativo del banner -->
+          <p class="subtitulo-hero"></p>         <!-- Descripción corta del banner -->
+          <a href="pages/catalogo.html" class="boton-comprar-ahora"></a>
+        </div>
+      </section>
+
+      <!-- Sección de selección curada: productos destacados -->
+      <section class="seccion-seleccion-curada">
+
+        <!-- Encabezado de la sección con subtítulo y enlace "ver todo" -->
+        <div class="encabezado-seccion">
+          <p class="subtitulo-seccion"></p>      <!-- Ej: "ETHEREAL ESSENTIALS" -->
+          <h2 class="titulo-seccion"></h2>       <!-- Ej: "Selección Curada" -->
+          <a href="pages/catalogo.html" class="enlace-ver-todo"></a>
+        </div>
+
+        <!-- Fila de tarjetas de productos destacados -->
+        <div class="fila-productos">
+
+          <!-- Tarjeta individual de producto (se repite por cada producto) -->
+          <article class="tarjeta-producto">
+            <div class="contenedor-imagen-producto">
+              <img src="" alt="" class="imagen-producto">
+              <!-- Badge opcional: "BESTSELLER", "NEW", "% OFF" -->
+              <span class="etiqueta-producto"></span>
+            </div>
+            <div class="informacion-producto">
+              <p class="categoria-producto"></p>   <!-- Ej: "SÉRUM ILUMINADOR" -->
+              <h3 class="nombre-producto"></h3>    <!-- Nombre del producto -->
+              <p class="precio-producto"></p>      <!-- Precio en pesos -->
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Scripts JavaScript al final del body -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
