@@ -1,2 +1,39 @@
-<!-- Página de login/inicio de sesión -->
-<!-- Aquí va: Formulario para que usuarios registrados inicien sesión con email y contraseña -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar Sesión - BeautyShop</title>
+</head>
+<body>
+  
+  <div class="contenedor-login">
+    <h2>Iniciar Sesión</h2>
+    
+    <!-- Formulario básico -->
+    <form id="formulario-login">
+      <div>
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+      </div>
+      <br>
+      <div>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" required>
+      </div>
+      <br>
+      <button type="submit">Ingresar</button>
+      
+      <!-- Este mensaje está oculto por defecto -->
+      <p id="mensaje-error" style="color: red; display: none;">Correo o contraseña incorrectos.</p>
+    </form>
+    
+    <br>
+    <a href="../index.html">Volver al inicio</a>
+  </div>
+
+  <!-- Importamos los datos PRIMERO y luego nuestra lógica de login -->
+  <script src="../js/data.js"></script>
+  <script src="../js/login.js"></script>
+
+</body>
+</html>
