@@ -13,10 +13,6 @@
 
 
 
-
-
-
-
 /* ------------------------------------------------------------
    TAREA 2: ESTRUCTURA PRINCIPAL (LAYOUT) index.html : Juan 
    Aquí van los estilos para los contenedores principales
@@ -33,25 +29,217 @@
 
 
 /* ------------------------------------------------------------
-   TAREA 3: DISEÑO DEL LOGIN : Esteban
-   Aquí van los estilos para login.html.
-   Centrar el contenido en pantalla, darle estilo de tarjeta 
-   a ".contenedor-login", y estilizar los inputs y el botón.
------------------------------------------------------------- */
-/* -> Escribe el código de la Tarea 3 aquí debajo <- */
+TAREA 3: DISEÑO DEL LOGIN : Esteban ------------------------------------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
 
+body.pagina-login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #121212;
+  overflow: hidden;
+  position: relative;
+}
 
+/* Fondo decorativo */
 
+.blob-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: .25;
+}
 
+.blob-1 {
+  width: 400px;
+  height: 400px;
+  background: #FF69B4;
+  top: -120px;
+  left: -120px;
+}
 
+.blob-2 {
+  width: 450px;
+  height: 450px;
+  background: #D8B4FE;
+  bottom: -150px;
+  right: -120px;
+}
 
+/* Tarjeta Login */
 
+.contenedor-login {
+  width: 420px;
+  background: #1E1E1E;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow:
+    0 0 40px rgba(255, 105, 180, .15),
+    0 10px 30px rgba(0, 0, 0, .5);
+  position: relative;
+  z-index: 10;
+}
 
+/* Encabezado */
 
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
+.login-logo {
+  font-size: 32px;
+  font-weight: 700;
+  color: #FF69B4;
+  margin-bottom: 15px;
+}
 
+.login-logo i {
+  margin-right: 8px;
+}
 
+.login-header h2 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.login-subtitle {
+  color: #FFCCBC;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Inputs */
+
+.input-grupo {
+  margin-bottom: 20px;
+}
+
+.input-grupo label {
+  display: block;
+  margin-bottom: 8px;
+  color: #D8B4FE;
+  font-weight: 600;
+}
+
+.input-grupo label i {
+  color: #FF69B4;
+}
+
+.input-grupo input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid #2d2d2d;
+  background: #121212;
+  color: white;
+  font-size: 15px;
+  transition: .3s;
+}
+
+.input-grupo input::placeholder {
+  color: #888;
+}
+
+.input-grupo input:focus {
+  outline: none;
+  border-color: #FF69B4;
+  box-shadow: 0 0 15px rgba(255, 105, 180, .35);
+}
+
+/* Contraseña */
+
+.password-wrapper {
+  position: relative;
+}
+
+.btn-toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #D8B4FE;
+  font-size: 18px;
+}
+
+/* Error */
+
+.mensaje-error {
+  background: rgba(255, 105, 180, .15);
+  border: 1px solid #FF69B4;
+  color: #FF69B4;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Botón */
+
+.boton-login {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg,
+      #FF69B4,
+      #D8B4FE);
+  color: #121212;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.boton-login:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(255, 105, 180, .45);
+}
+
+/* Footer */
+
+.login-footer {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.enlace-volver {
+  color: #FFCCBC;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.enlace-volver:hover {
+  color: #FF69B4;
+}
+
+/* Responsive */
+
+@media(max-width:480px) {
+
+  .contenedor-login {
+    width: 92%;
+    padding: 30px;
+  }
+
+}
 
 /* ------------------------------------------------------------
    TAREA FUTURA: COMPONENTES REUTILIZABLES

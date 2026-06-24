@@ -1,39 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iniciar Sesión - BeautyShop</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Ajusta la ruta según tu proyecto -->
+  <link rel="stylesheet" href="../css/estilos.css">
 </head>
-<body>
-  
-  <div class="contenedor-login">
-    <h2>Iniciar Sesión</h2>
-    
-    <!-- Formulario básico -->
-    <form id="formulario-login">
-      <div>
-        <label for="email">Correo electrónico:</label>
-        <input type="email" id="email" placeholder="ejemplo@correo.com" required>
-      </div>
-      <br>
-      <div>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" required>
-      </div>
-      <br>
-      <button type="submit">Ingresar</button>
-      
-      <!-- Este mensaje está oculto por defecto -->
-      <p id="mensaje-error" style="color: red; display: none;">Correo o contraseña incorrectos.</p>
-    </form>
-    
-    <br>
-    <a href="../index.html">Volver al inicio</a>
+
+<body class="pagina-login">
+
+  <div class="blob-container">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
   </div>
 
-  <!-- Importamos los datos PRIMERO y luego nuestra lógica de login -->
-  <script src="../js/data.js"></script>
-  <script src="../js/login.js"></script>
+  <div class="contenedor-login">
+
+    <div class="login-header">
+      <div class="login-logo">
+        <i class="fa-solid fa-sparkles"></i>
+        <span>BeautyShop</span>
+      </div>
+
+      <h2>Bienvenida de nuevo</h2>
+
+      <p class="login-subtitle">
+        Accede a tu cuenta para descubrir nuestros productos exclusivos.
+      </p>
+    </div>
+
+    <form id="formulario-login">
+
+      <div class="input-grupo">
+        <label for="email">
+          <i class="fa-regular fa-envelope"></i>
+          Correo electrónico
+        </label>
+
+        <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+      </div>
+
+      <div class="input-grupo">
+        <label for="password">
+          <i class="fa-solid fa-lock"></i>
+          Contraseña
+        </label>
+
+        <div class="password-wrapper">
+          <input type="password" id="password" placeholder="••••••••" required>
+
+          <button type="button" id="toggle-password" class="btn-toggle-password">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <p id="mensaje-error" class="mensaje-error" style="display:none;">
+        Correo o contraseña incorrectos.
+      </p>
+
+      <button type="submit" class="boton-login">
+        Ingresar
+      </button>
+
+    </form>
+
+    <div class="login-footer">
+      <a href="../index.html" class="enlace-volver">
+        <i class="fa-solid fa-arrow-left"></i>
+        Volver al inicio
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    const btn = document.getElementById("toggle-password");
+    const pass = document.getElementById("password");
+
+    btn.addEventListener("click", () => {
+
+      if (pass.type === "password") {
+        pass.type = "text";
+        btn.innerHTML = '<i class="fa-regular fa-eye-slash"></i>';
+      } else {
+        pass.type = "password";
+        btn.innerHTML = '<i class="fa-regular fa-eye"></i>';
+      }
+
+    });
+  </script>
 
 </body>
+
 </html>
