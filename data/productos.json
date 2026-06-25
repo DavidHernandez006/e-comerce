@@ -1,3 +1,58 @@
 {
-  "productos": []
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Dewy Drops B5",
+      "categoria": "Sérum Iluminador",
+      "precio": 550.00,
+      "descripcion": "Sérum iluminador con Vitamina B5 para una piel radiante e hidratada. Efecto 'Glass Skin' inmediato.",
+      "imagen": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "etiqueta": "BESTSELLER"
+    },
+    {
+      "id": 2,
+      "nombre": "Velvet Petal Stain",
+      "categoria": "Labios",
+      "precio": 320.00,
+      "descripcion": "Tinta de labios con acabado aterciopelado. Larga duración y textura ultra ligera que no reseca.",
+      "imagen": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "etiqueta": ""
+    },
+    {
+      "id": 3,
+      "nombre": "Cloud Whip Cream",
+      "categoria": "Hidratación",
+      "precio": 680.00,
+      "descripcion": "Crema hidratante con textura de nube. Repara la barrera cutánea y sella la hidratación por 24 horas.",
+      "imagen": "https://images.unsplash.com/photo-1608248593802-8eb3a6569e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "etiqueta": ""
+    },
+    {
+      "id": 4,
+      "nombre": "Aura Glow Blush",
+      "categoria": "Maquillaje",
+      "precio": 450.00,
+      "descripcion": "Rubor en polvo con micro-perlas que aporta un color natural y un brillo etéreo a tus mejillas.",
+      "imagen": "https://images.unsplash.com/photo-1596462502278-27bf85033e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "etiqueta": "NEW"
+    },
+    {
+      "id": 5,
+      "nombre": "Matcha Detox Mask",
+      "categoria": "Mascarillas",
+      "precio": 400.00,
+      "descripcion": "Mascarilla purificante de té verde matcha. Limpia los poros en profundidad y calma las rojeces.",
+      "imagen": "https://images.unsplash.com/photo-1599305090598-fe179d501227?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "etiqueta": ""
+    },
+    {
+      "id": 6,
+      "nombre": "Rosewater Toner",
+      "categoria": "Tónicos",
+      "precio": 350.00,
+      "descripcion": "Tónico facial de agua de rosas orgánicas. Refresca, equilibra el pH y prepara la piel para la hidratación.",
+      "imagen": "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "etiqueta": ""
+    }
+  ]
 }

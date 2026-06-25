@@ -1,2 +1,187 @@
-/* Media queries y estilos responsivos */
-/* Aquí va: Breakpoints para mobile (max-width 768px), tablet (769-1024px), desktop (1025px+) */
+/* ==========================
+   RESPONSIVE DESIGN
+========================== */
+
+/* Tablet y Mobile (max-width 1024px) */
+@media (max-width: 1024px) {
+    
+    /* Ocultar barra lateral en móviles */
+    .barra-lateral {
+        transform: translateX(-100%);
+        z-index: 1000;
+    }
+
+    /* Mostrar botón de toggle */
+    .boton-toggle-menu {
+        display: flex;
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        background-color: var(--color-boton-principal);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        cursor: pointer;
+        z-index: 1001;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* Ajustar contenido */
+    .contenido-principal {
+        padding: 20px;
+    }
+
+    .barra-superior {
+        padding: 15px 20px;
+    }
+
+    .tarjeta-producto {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .formulario-perfil {
+        padding: 20px;
+    }
+}
+
+/* Mobile (max-width 768px) */
+@media (max-width: 768px) {
+    
+    /* Ocultar contenido por defecto en mobile */
+    .contenedor-principal {
+        grid-template-columns: 1fr;
+    }
+
+    .barra-lateral {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.95);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .barra-lateral.activo {
+        transform: translateX(0);
+    }
+
+    .logo {
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .navegacion-lateral {
+        margin: 0 20px;
+    }
+
+    .lista-navegacion {
+        flex-direction: column;
+    }
+
+    .opcion-navegacion {
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        padding: 15px 0;
+    }
+
+    .opcion-navegacion a {
+        padding: 15px;
+        display: block;
+    }
+
+    .opcion-navegacion.activa {
+        background-color: rgba(255,255,255,0.05);
+    }
+
+    .acciones-soporte {
+        padding: 20px;
+    }
+
+    .boton-unirse {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Cerrar menú al tocar el contenido */
+    .contenido-principal.activo::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 999;
+    }
+
+    /* Ajustar contenido principal */
+    .contenido-principal {
+        padding: 15px;
+        padding-bottom: 100px;
+    }
+
+    .barra-superior {
+        padding: 15px 10px;
+        position: sticky;
+        top: 0;
+        z-index: 900;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .titulo-seccion {
+        font-size: 20px;
+    }
+
+    .tarjeta-perfil {
+        padding: 20px;
+    }
+
+    .cabecera-perfil {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .avatar-perfil {
+        width: 100px;
+        height: 100px;
+        font-size: 50px;
+    }
+
+    .grupo-input.doble {
+        grid-template-columns: 1fr;
+    }
+
+    .catalogo-grilla {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .modal-contenido {
+        padding: 20px;
+    }
+}
+
+/* Desktop (1025px+) */
+@media (min-width: 1025px) {
+    .boton-toggle-menu {
+        display: none;
+    }
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}

@@ -4,107 +4,346 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BeautyShop</title>
+  <title>LUMINA K-Beauty</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 
-  <!-- Contenedor principal que divide barra lateral y contenido -->
   <div class="contenedor-principal">
 
-    <!-- Barra lateral izquierda con logo, navegación y acciones -->
+    <!-- Barra lateral izquierda -->
     <aside class="barra-lateral">
-
-      <!-- Logo de la tienda -->
       <div class="logo">
-        <h1 class="logo-nombre"></h1>         <!-- Nombre de la marca -->
-        <p class="logo-slogan"></p>            <!-- Slogan debajo del nombre -->
+        <h1 class="logo-nombre gradient-text">Lumina</h1>
+        <p class="logo-slogan">MIDNIGHT GLOW</p>
       </div>
 
-      <!-- Menú de navegación principal -->
       <nav class="navegacion-lateral">
         <ul class="lista-navegacion">
-          <li class="opcion-navegacion"><a href="#">Catálogo</a></li>
-          <li class="opcion-navegacion"><a href="#">Nueva Colección</a></li>
-          <li class="opcion-navegacion"><a href="#">Ofertas</a></li>
-          <li class="opcion-navegacion"><a href="#">Más Vendidos</a></li>
+          <li class="opcion-navegacion activa">
+            <a href="#"><i class="ph ph-squares-four"></i> Catálogo</a>
+          </li>
+          <li class="opcion-navegacion">
+            <a href="#"><i class="ph ph-sparkle"></i> Nueva Colección</a>
+          </li>
+          <li class="opcion-navegacion">
+            <a href="#"><i class="ph ph-tag"></i> Ofertas</a>
+          </li>
+          <li class="opcion-navegacion">
+            <a href="#"><i class="ph ph-trend-up"></i> Más Vendidos</a>
+          </li>
         </ul>
       </nav>
 
-      <!-- Acciones de soporte al fondo de la barra lateral -->
-      <div class="acciones-soporte">
-        <a href="#" class="enlace-soporte">Help Center</a>
-        <a href="#" class="enlace-soporte">Shipping</a>
-        <!-- Botón para unirse o registrarse -->
-        <button class="boton-unirse"></button>
+      <div class="perfil-lateral">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Avatar" class="avatar-pequeno">
+        <div class="info-perfil-lateral">
+          <p class="nombre-perfil">Invitada</p>
+          <a href="pages/login.html" class="enlace-perfil">Sign In</a>
+        </div>
       </div>
-
     </aside>
 
-    <!-- Zona principal donde va todo el contenido de la página -->
+    <!-- Zona principal -->
     <main class="contenido-principal">
 
-      <!-- Barra superior con buscador, carrito e inicio de sesión -->
+      <!-- Barra superior -->
       <header class="barra-superior">
-        <!-- Campo de búsqueda de productos -->
-        <input type="search" class="campo-busqueda" placeholder="Buscar producto...">
+        <div class="contenedor-busqueda oscuro">
+          <i class="ph ph-magnifying-glass"></i>
+          <input type="search" class="campo-busqueda" placeholder="Buscar productos de seda...">
+        </div>
 
-        <!-- Icono del carrito con contador de artículos -->
-        <a href="pages/carrito.html" class="icono-carrito">
-          <img src="" alt="Carrito de compras">
-          <span class="contador-carrito">0</span>
-        </a>
-
-        <!-- Botón para iniciar sesión -->
-        <a href="pages/login.html" class="boton-iniciar-sesion"></a>
+        <div class="acciones-usuario">
+          <a href="#" class="enlace-favoritos">
+            <i class="ph ph-heart"></i> FAVORITOS
+          </a>
+          <a href="pages/carrito.html" class="icono-bolsa">
+            <i class="ph ph-shopping-bag"></i>
+            <span class="badge-header">2</span>
+          </a>
+          <a href="pages/login.html" class="boton-pill-signin">Sign In</a>
+        </div>
       </header>
 
-      <!-- Sección hero: banner principal con imagen y llamado a la acción -->
-      <section class="seccion-hero">
-        <div class="banner-principal">
-          <h2 class="titulo-hero"></h2>          <!-- Título llamativo del banner -->
-          <p class="subtitulo-hero"></p>         <!-- Descripción corta del banner -->
-          <a href="pages/catalogo.html" class="boton-comprar-ahora"></a>
+      <!-- Hero Banner -->
+      <section class="seccion-hero midnight">
+        <div class="banner-contenido">
+          <p class="eyebrow-hero">MIDNIGHT SPECIAL EDITION</p>
+          <h2 class="titulo-hero">The Glass Skin <br><span class="ritual-gradient">Ritual</span></h2>
+          <p class="subtitulo-hero">Desbloquea la luminosidad nocturna con nuestra fórmula de bio-fermentos. Una experiencia sensorial que transforma tu piel mientras descansas bajo la luna.</p>
+          
+          <div class="acciones-hero">
+            <a href="pages/catalogo.html" class="boton-comprar-ahora">Comprar ahora</a>
+            <div class="linea-separadora"></div>
+            <a href="pages/catalogo.html" class="enlace-explorar">Explorar Colección</a>
+          </div>
         </div>
       </section>
 
-      <!-- Sección de selección curada: productos destacados -->
+      <!-- Productos -->
       <section class="seccion-seleccion-curada">
-
-        <!-- Encabezado de la sección con subtítulo y enlace "ver todo" -->
         <div class="encabezado-seccion">
-          <p class="subtitulo-seccion"></p>      <!-- Ej: "ETHEREAL ESSENTIALS" -->
-          <h2 class="titulo-seccion"></h2>       <!-- Ej: "Selección Curada" -->
-          <a href="pages/catalogo.html" class="enlace-ver-todo"></a>
+          <div>
+            <p class="subtitulo-seccion">ETHEREAL ESSENTIALS</p>
+            <h2 class="titulo-seccion">Selección Curada</h2>
+          </div>
+          <a href="pages/catalogo.html" class="enlace-ver-todo">Ver todo</a>
         </div>
 
-        <!-- Fila de tarjetas de productos destacados -->
         <div class="fila-productos">
-
-          <!-- Tarjeta individual de producto (se repite por cada producto) -->
+          
           <article class="tarjeta-producto">
             <div class="contenedor-imagen-producto">
-              <img src="" alt="" class="imagen-producto">
-              <!-- Badge opcional: "BESTSELLER", "NEW", "% OFF" -->
-              <span class="etiqueta-producto"></span>
+              <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dewy Drops B5" class="imagen-producto">
+              <span class="etiqueta-producto destacada">BESTSELLER</span>
             </div>
             <div class="informacion-producto">
-              <p class="categoria-producto"></p>   <!-- Ej: "SÉRUM ILUMINADOR" -->
-              <h3 class="nombre-producto"></h3>    <!-- Nombre del producto -->
-              <p class="precio-producto"></p>      <!-- Precio en pesos -->
+              <p class="categoria-producto">SÉRUM ILUMINADOR</p>
+              <h3 class="nombre-producto">Dewy Drops B5</h3>
+            </div>
+          </article>
+
+          <article class="tarjeta-producto">
+            <div class="contenedor-imagen-producto">
+              <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Velvet Petal Stain" class="imagen-producto">
+            </div>
+            <div class="informacion-producto">
+              <p class="categoria-producto">LABIOS</p>
+              <h3 class="nombre-producto">Velvet Petal Stain</h3>
+            </div>
+          </article>
+
+          <article class="tarjeta-producto">
+            <div class="contenedor-imagen-producto">
+              <img src="https://images.unsplash.com/photo-1608248593802-8eb3a6569e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Cloud Whip Cream" class="imagen-producto">
+            </div>
+            <div class="informacion-producto">
+              <p class="categoria-producto">HIDRATACIÓN</p>
+              <h3 class="nombre-producto">Cloud Whip Cream</h3>
+            </div>
+          </article>
+
+          <article class="tarjeta-producto">
+            <div class="contenedor-imagen-producto">
+              <img src="https://images.unsplash.com/photo-1596462502278-27bf85033e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Aura Glow Blush" class="imagen-producto">
+              <span class="etiqueta-producto nueva">NEW</span>
+            </div>
+            <div class="informacion-producto">
+              <p class="categoria-producto">MAQUILLAJE</p>
+              <h3 class="nombre-producto">Aura Glow Blush</h3>
             </div>
           </article>
 
         </div>
       </section>
 
+      <!-- ===== PRODUCTOS MÁS VENDIDOS ===== -->
+      <section class="seccion-mas-vendidos">
+        <div class="encabezado-vendidos">
+          <span class="badge-seccion"><i class="ph-fill ph-star"></i> MÁS VENDIDOS</span>
+          <h2 class="titulo-grande">Productos Destacados</h2>
+          <div class="linea-decorativa"></div>
+          <p class="descripcion-seccion">Nuestros productos más queridos, seleccionados por expertos en belleza</p>
+        </div>
+
+        <div class="grid-mas-vendidos">
+
+          <article class="tarjeta-vendido">
+            <div class="imagen-vendido">
+              <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sérum Vitamina C">
+            </div>
+            <div class="info-vendido">
+              <p class="cat-vendido">SKINCARE</p>
+              <h3>Sérum Vitamina C Iluminador</h3>
+              <p class="desc-vendido">Sérum facial concentrado con vitamina C pura al 20%. Ilumina,...</p>
+              <div class="fila-precio">
+                <span class="precio-vendido">$89.000 COP</span>
+                <button class="btn-agregar"><i class="ph ph-shopping-cart"></i> Agregar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="tarjeta-vendido">
+            <div class="imagen-vendido">
+              <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Paleta Sombras">
+            </div>
+            <div class="info-vendido">
+              <p class="cat-vendido">MAQUILLAJE</p>
+              <h3>Paleta de Sombras Sunset Glow</h3>
+              <p class="desc-vendido">18 tonos cálidos y metálicos inspirados en atardeceres. Textura...</p>
+              <div class="fila-precio">
+                <span class="precio-vendido">$125.000 COP</span>
+                <button class="btn-agregar"><i class="ph ph-shopping-cart"></i> Agregar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="tarjeta-vendido">
+            <div class="imagen-vendido">
+              <img src="https://images.unsplash.com/photo-1608248593802-8eb3a6569e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Crema Hidratante">
+            </div>
+            <div class="info-vendido">
+              <p class="cat-vendido">SKINCARE</p>
+              <h3>Crema Hidratante con Ácido Hialurónico</h3>
+              <p class="desc-vendido">Hidratación profunda de 72 horas con ácido hialurónico de triple peso...</p>
+              <div class="fila-precio">
+                <span class="precio-vendido">$72.000 COP</span>
+                <button class="btn-agregar"><i class="ph ph-shopping-cart"></i> Agregar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="tarjeta-vendido">
+            <div class="imagen-vendido">
+              <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Labial Matte">
+            </div>
+            <div class="info-vendido">
+              <p class="cat-vendido">MAQUILLAJE</p>
+              <h3>Labial Matte Velvet Rose</h3>
+              <p class="desc-vendido">Labial líquido mate de larga duración con acabado aterciopelado. Tono ro...</p>
+              <div class="fila-precio">
+                <span class="precio-vendido">$45.000 COP</span>
+                <button class="btn-agregar"><i class="ph ph-shopping-cart"></i> Agregar</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ===== RUTINA RECOMENDADA ===== -->
+      <section class="seccion-rutina">
+        <div class="rutina-contenido">
+          <span class="badge-seccion"><i class="ph-fill ph-flower-tulip"></i> PASO A PASO</span>
+          <h2 class="titulo-grande">Tu Rutina Recomendada</h2>
+          <p class="descripcion-seccion">Adapta tu cuidado según las necesidades de tu piel en cada momento del día.</p>
+
+          <div class="tabs-rutina">
+            <button class="tab-rutina activo" id="tab-dia" onclick="mostrarRutina('dia')">
+              ☀️ Rutina de Día
+            </button>
+            <button class="tab-rutina" id="tab-noche" onclick="mostrarRutina('noche')">
+              🌙 Rutina de Noche
+            </button>
+          </div>
+
+          <div class="pasos-rutina" id="rutina-dia">
+            <div class="paso-rutina">
+              <span class="numero-paso">1</span>
+              <div>
+                <h4>Limpiador suave</h4>
+                <p>Retira impurezas sin resecar</p>
+              </div>
+            </div>
+            <div class="paso-rutina">
+              <span class="numero-paso">2</span>
+              <div>
+                <h4>Tónico hidratante</h4>
+                <p>Equilibra el pH de tu piel</p>
+              </div>
+            </div>
+            <div class="paso-rutina">
+              <span class="numero-paso">3</span>
+              <div>
+                <h4>Sérum Vitamina C</h4>
+                <p>Ilumina y protege de radicales libres</p>
+              </div>
+            </div>
+            <div class="paso-rutina">
+              <span class="numero-paso">4</span>
+              <div>
+                <h4>Crema hidratante + SPF</h4>
+                <p>Hidratación y protección solar</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pasos-rutina oculto" id="rutina-noche">
+            <div class="paso-rutina">
+              <span class="numero-paso">1</span>
+              <div>
+                <h4>Aceite desmaquillante</h4>
+                <p>Disuelve maquillaje y SPF</p>
+              </div>
+            </div>
+            <div class="paso-rutina">
+              <span class="numero-paso">2</span>
+              <div>
+                <h4>Limpiador de espuma</h4>
+                <p>Doble limpieza para piel perfecta</p>
+              </div>
+            </div>
+            <div class="paso-rutina">
+              <span class="numero-paso">3</span>
+              <div>
+                <h4>Sérum Retinol B5</h4>
+                <p>Renovación celular nocturna</p>
+              </div>
+            </div>
+            <div class="paso-rutina">
+              <span class="numero-paso">4</span>
+              <div>
+                <h4>Crema de noche nutritiva</h4>
+                <p>Regenera mientras descansas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== EMPRENDE CON NOSOTROS ===== -->
+      <section class="seccion-emprende">
+        <div class="emprende-imagen">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Emprendedora">
+        </div>
+        <div class="emprende-contenido">
+          <span class="badge-seccion"><i class="ph-fill ph-rocket"></i> OPORTUNIDAD</span>
+          <h2 class="titulo-grande">Emprende con <span class="ritual-gradient">LUMINA</span></h2>
+          <p class="descripcion-seccion">Únete a nuestra red exclusiva de embajadoras. Construye tu propio negocio de belleza, recibe capacitación continua y genera ingresos compartiendo los productos que amas.</p>
+          
+          <ul class="lista-beneficios">
+            <li><span class="emoji-bullet">✨</span> Comisiones atractivas</li>
+            <li><span class="emoji-bullet">🎁</span> Descuentos exclusivos en productos</li>
+            <li><span class="emoji-bullet">📚</span> Capacitación en ventas y skincare</li>
+          </ul>
+
+          <a href="pages/publicar.html" class="boton-emprender">Quiero Emprender</a>
+        </div>
+      </section>
+
     </main>
+
+    <!-- Floating Cart -->
+    <a href="pages/carrito.html" class="carrito-flotante">
+      <i class="ph ph-shopping-cart"></i>
+      <span class="badge-carrito">2</span>
+    </a>
 
   </div>
 
-  <!-- Scripts JavaScript al final del body -->
   <script src="js/data.js"></script>
   <script src="js/carrito.js"></script>
   <script src="js/main.js"></script>
-
+  <script>
+    function mostrarRutina(tipo) {
+      document.getElementById('rutina-dia').classList.add('oculto');
+      document.getElementById('rutina-noche').classList.add('oculto');
+      document.getElementById('tab-dia').classList.remove('activo');
+      document.getElementById('tab-noche').classList.remove('activo');
+      document.getElementById('rutina-' + tipo).classList.remove('oculto');
+      document.getElementById('tab-' + tipo).classList.add('activo');
+    }
+  </script>
 </body>
 </html>

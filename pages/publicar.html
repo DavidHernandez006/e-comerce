@@ -1,2 +1,109 @@
-<!-- Publicar producto (Para emprendedores/vendedores) -->
-<!-- Aquí va: Formulario para agregar nuevos productos, descripción, precio, imágenes, categoría -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar Producto - LUMINA K-Beauty</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+  <div class="contenedor-principal">
+
+    <!-- Barra lateral izquierda -->
+    <aside class="barra-lateral">
+      <div class="logo">
+        <h1 class="logo-nombre">LUMINA</h1>
+        <p class="logo-slogan">K-BEAUTY CURATION</p>
+      </div>
+
+      <nav class="navegacion-lateral">
+        <ul class="lista-navegacion">
+          <li class="opcion-navegacion">
+            <a href="../index.html"><i class="ph ph-squares-four"></i> Catálogo</a>
+          </li>
+          <li class="opcion-navegacion">
+            <a href="perfil.html"><i class="ph ph-user"></i> Mi Perfil</a>
+          </li>
+          <li class="opcion-navegacion activa">
+            <a href="publicar.html"><i class="ph ph-plus-circle"></i> Publicar</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="acciones-soporte">
+        <a href="#" class="enlace-soporte"><i class="ph ph-question"></i> Help Center</a>
+        <a href="../index.html" class="boton-unirse">Volver al Inicio</a>
+      </div>
+    </aside>
+
+    <!-- Zona principal -->
+    <main class="contenido-principal">
+
+      <!-- Barra superior -->
+      <header class="barra-superior">
+        <h2 class="titulo-seccion">Publicar Nuevo Producto</h2>
+        <div class="acciones-usuario">
+          <a href="carrito.html" class="icono-bolsa">
+            <i class="ph ph-shopping-bag"></i>
+          </a>
+        </div>
+      </header>
+
+      <!-- Contenido de Publicar -->
+      <section class="contenedor-formulario-perfil">
+        <div class="tarjeta-perfil">
+          <form class="formulario-perfil">
+            <h4 class="subtitulo-formulario">Información del Producto</h4>
+            <div class="grupo-input">
+              <label>Nombre del Producto</label>
+              <input type="text" placeholder="Ej. Sérum Hidratante Ácido Hialurónico">
+            </div>
+            <div class="grupo-input doble">
+              <div>
+                <label>Categoría</label>
+                <select class="input-select">
+                  <option>Skincare</option>
+                  <option>Maquillaje</option>
+                  <option>Cuidado Capilar</option>
+                  <option>Cuerpo</option>
+                </select>
+              </div>
+              <div>
+                <label>Precio ($)</label>
+                <input type="number" placeholder="Ej. 450.00">
+              </div>
+            </div>
+            
+            <div class="grupo-input">
+              <label>Descripción</label>
+              <textarea placeholder="Describe los beneficios e ingredientes clave de tu producto..." rows="4" class="input-textarea"></textarea>
+            </div>
+
+            <h4 class="subtitulo-formulario">Imágenes</h4>
+            <div class="grupo-input drag-drop-area">
+              <i class="ph ph-upload-simple"></i>
+              <p>Arrastra tu imagen aquí o haz clic para subir</p>
+            </div>
+
+            <button type="submit" class="boton-comprar-ahora" style="width: 100%; margin-top: 20px;"><i class="ph ph-check-circle"></i> Publicar Producto</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
