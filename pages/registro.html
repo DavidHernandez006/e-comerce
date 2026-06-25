@@ -1,2 +1,300 @@
-<!-- Página de registro de usuarios -->
-<!-- Aquí va: Formulario para crear nuevas cuentas con validación de datos y contraseña -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-t="registro">Registrarse - BeautyShop</title>
+  <link rel="stylesheet" href="../css/estilos.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/modo-oscuro.css">
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="../assets/logo/logo.png" alt="BeautyShop" class="logo-img">
+        <span>BeautyShop</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html" data-t="inicio">Inicio</a></li>
+        <li><a href="./catalogo.html" data-t="catalogo">Catálogo</a></li>
+        <li><a href="./carrito.html" data-t="carrito">Carrito</a></li>
+        <li><a href="./login.html" data-t="login">Iniciar Sesión</a></li>
+      </ul>
+      <div class="nav-icons">
+        <button id="btn-modo-oscuro" title="Cambiar modo">🌙</button>
+        <select id="selector-idioma" class="idioma-selector">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenedor principal -->
+  <main class="container">
+    <div class="registro-container">
+      <div class="registro-card">
+        <h1 data-t="registro">Registrarse</h1>
+        <p class="texto-secundario" data-t="ya_tienes_cuenta">¿Ya tienes cuenta?</p>
+        <a href="./login.html" class="link-login" data-t="login">Inicia sesión aquí</a>
+
+        <form id="formulario-registro" class="formulario-registro">
+          <!-- Nombre Completo -->
+          <div class="form-group">
+            <label for="nombre" data-t="nombre">Nombre Completo</label>
+            <input 
+              type="text" 
+              id="nombre" 
+              name="nombre" 
+              placeholder="" 
+              data-t="nombre"
+              required
+            >
+            <span class="error-mensaje" id="error-nombre"></span>
+          </div>
+
+          <!-- Correo Electrónico -->
+          <div class="form-group">
+            <label for="correo" data-t="correo">Correo Electrónico</label>
+            <input 
+              type="email" 
+              id="correo" 
+              name="correo" 
+              placeholder="" 
+              data-t="correo"
+              required
+            >
+            <span class="error-mensaje" id="error-correo"></span>
+          </div>
+
+          <!-- Teléfono -->
+          <div class="form-group">
+            <label for="telefono" data-t="telefono">Teléfono</label>
+            <input 
+              type="tel" 
+              id="telefono" 
+              name="telefono" 
+              placeholder="" 
+              data-t="telefono"
+              required
+            >
+            <span class="error-mensaje" id="error-telefono"></span>
+          </div>
+
+          <!-- Dirección -->
+          <div class="form-group">
+            <label for="direccion" data-t="direccion">Dirección</label>
+            <input 
+              type="text" 
+              id="direccion" 
+              name="direccion" 
+              placeholder="" 
+              data-t="direccion"
+              required
+            >
+            <span class="error-mensaje" id="error-direccion"></span>
+          </div>
+
+          <!-- Ciudad -->
+          <div class="form-group">
+            <label for="ciudad" data-t="ciudad">Ciudad</label>
+            <input 
+              type="text" 
+              id="ciudad" 
+              name="ciudad" 
+              placeholder="" 
+              data-t="ciudad"
+              required
+            >
+            <span class="error-mensaje" id="error-ciudad"></span>
+          </div>
+
+          <!-- Código Postal -->
+          <div class="form-group">
+            <label for="codigo-postal" data-t="codigo_postal">Código Postal</label>
+            <input 
+              type="text" 
+              id="codigo-postal" 
+              name="codigoPostal" 
+              placeholder="" 
+              data-t="codigo_postal"
+              required
+            >
+            <span class="error-mensaje" id="error-codigo-postal"></span>
+          </div>
+
+          <!-- País -->
+          <div class="form-group">
+            <label for="pais" data-t="pais">País</label>
+            <input 
+              type="text" 
+              id="pais" 
+              name="pais" 
+              placeholder="" 
+              data-t="pais"
+              required
+            >
+            <span class="error-mensaje" id="error-pais"></span>
+          </div>
+
+          <!-- Contraseña -->
+          <div class="form-group">
+            <label for="contrasena" data-t="contrasena">Contraseña</label>
+            <input 
+              type="password" 
+              id="contrasena" 
+              name="contrasena" 
+              placeholder="" 
+              data-t="contrasena"
+              required
+            >
+            <span class="error-mensaje" id="error-contrasena"></span>
+          </div>
+
+          <!-- Confirmar Contraseña -->
+          <div class="form-group">
+            <label for="confirmar-contrasena" data-t="confirmar_contrasena">Confirmar Contraseña</label>
+            <input 
+              type="password" 
+              id="confirmar-contrasena" 
+              name="confirmarContrasena" 
+              placeholder="" 
+              data-t="confirmar_contrasena"
+              required
+            >
+            <span class="error-mensaje" id="error-confirmar-contrasena"></span>
+          </div>
+
+          <!-- Botón de registro -->
+          <button type="submit" class="btn-primary" data-t="registro">Registrarse</button>
+        </form>
+
+        <!-- Mensaje de éxito/error -->
+        <div id="mensaje-resultado" class="mensaje-resultado"></div>
+      </div>
+
+      <!-- Imagen decorativa -->
+      <div class="registro-imagen">
+        <img src="../assets/images/registro-beauty.jpg" alt="Registro" onerror="this.src='../assets/images/placeholder.jpg'">
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>BeautyShop</h3>
+        <p>Tu tienda de belleza online de confianza</p>
+      </div>
+      <div class="footer-section">
+        <h4 data-t="inicio">Enlaces</h4>
+        <ul>
+          <li><a href="../index.html" data-t="inicio">Inicio</a></li>
+          <li><a href="./catalogo.html" data-t="catalogo">Catálogo</a></li>
+          <li><a href="./contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Síguenos</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 BeautyShop. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/traduccion.js"></script>
+  <script src="../js/modo-oscuro.js"></script>
+  <script src="../js/login.js"></script>
+
+  <script>
+    // Cambiar idioma
+    document.getElementById('selector-idioma').addEventListener('change', (e) => {
+      cambiarIdioma(e.target.value);
+    });
+
+    // Establecer idioma actual en el selector
+    document.getElementById('selector-idioma').value = obtenerIdiomaActual();
+
+    // Validación y registro del formulario
+    document.getElementById('formulario-registro').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const datos = {
+        nombre: document.getElementById('nombre').value.trim(),
+        correo: document.getElementById('correo').value.trim(),
+        telefono: document.getElementById('telefono').value.trim(),
+        direccion: document.getElementById('direccion').value.trim(),
+        ciudad: document.getElementById('ciudad').value.trim(),
+        codigoPostal: document.getElementById('codigo-postal').value.trim(),
+        pais: document.getElementById('pais').value.trim(),
+        contrasena: document.getElementById('contrasena').value,
+        confirmarContrasena: document.getElementById('confirmar-contrasena').value
+      };
+
+      // Validaciones
+      let valido = true;
+
+      if (!datos.nombre || datos.nombre.length < 3) {
+        mostrarError('error-nombre', t('nombre') + ' debe tener al menos 3 caracteres');
+        valido = false;
+      }
+
+      if (!datos.correo || !datos.correo.includes('@')) {
+        mostrarError('error-correo', 'Correo inválido');
+        valido = false;
+      }
+
+      if (!datos.telefono || datos.telefono.length < 8) {
+        mostrarError('error-telefono', t('telefono') + ' inválido');
+        valido = false;
+      }
+
+      if (datos.contrasena.length < 6) {
+        mostrarError('error-contrasena', t('contrasena_debil'));
+        valido = false;
+      }
+
+      if (datos.contrasena !== datos.confirmarContrasena) {
+        mostrarError('error-confirmar-contrasena', 'Las contraseñas no coinciden');
+        valido = false;
+      }
+
+      if (!valido) return;
+
+      // Aquí iría la lógica para registrar el usuario (conectar con servidor)
+      registrarUsuario(datos);
+    });
+
+    function mostrarError(elementId, mensaje) {
+      document.getElementById(elementId).textContent = mensaje;
+    }
+
+    function limpiarErrores() {
+      document.querySelectorAll('.error-mensaje').forEach(el => el.textContent = '');
+    }
+
+    function registrarUsuario(datos) {
+      // Simular registro (en producción, conectar con servidor)
+      limpiarErrores();
+      
+      const mensajeResultado = document.getElementById('mensaje-resultado');
+      mensajeResultado.textContent = t('bienvenido') + ' ' + datos.nombre + '! Tu cuenta ha sido creada.';
+      mensajeResultado.className = 'mensaje-resultado exito';
+
+      setTimeout(() => {
+        window.location.href = './login.html';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
