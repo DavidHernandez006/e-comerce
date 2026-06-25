@@ -1,22 +1,30 @@
 <!-- Página de inicio principal del e-commerce -->
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LUMINA K-Beauty</title>
-  
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <!-- Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  
+
   <!-- Estilos -->
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/modo-oscuro.css">
+  <style>
+
+  </style>
 </head>
+
 <body>
 
   <div class="contenedor-principal">
@@ -45,8 +53,16 @@
         </ul>
       </nav>
 
+      <div class="contenedor-toggle-tema">
+        <span class="etiqueta-tema">🌙 Oscuro</span>
+        <button class="boton-tema" id="boton-toggle-tema" aria-label="Cambiar tema claro/oscuro" role="switch"
+          tabindex="0"></button>
+      </div>
+
       <div class="perfil-lateral">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Avatar" class="avatar-pequeno">
+        <img
+          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+          alt="Avatar" class="avatar-pequeno">
         <div class="info-perfil-lateral">
           <p class="nombre-perfil">Invitada</p>
           <a href="pages/login.html" class="enlace-perfil">Sign In</a>
@@ -81,8 +97,9 @@
         <div class="banner-contenido">
           <p class="eyebrow-hero">MIDNIGHT SPECIAL EDITION</p>
           <h2 class="titulo-hero">The Glass Skin <br><span class="ritual-gradient">Ritual</span></h2>
-          <p class="subtitulo-hero">Desbloquea la luminosidad nocturna con nuestra fórmula de bio-fermentos. Una experiencia sensorial que transforma tu piel mientras descansas bajo la luna.</p>
-          
+          <p class="subtitulo-hero">Desbloquea la luminosidad nocturna con nuestra fórmula de bio-fermentos. Una
+            experiencia sensorial que transforma tu piel mientras descansas bajo la luna.</p>
+
           <div class="acciones-hero">
             <a href="pages/catalogo.html" class="boton-comprar-ahora">Comprar ahora</a>
             <div class="linea-separadora"></div>
@@ -102,10 +119,12 @@
         </div>
 
         <div class="fila-productos">
-          
+
           <article class="tarjeta-producto">
             <div class="contenedor-imagen-producto">
-              <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dewy Drops B5" class="imagen-producto">
+              <img
+                src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                alt="Dewy Drops B5" class="imagen-producto">
               <span class="etiqueta-producto destacada">BESTSELLER</span>
             </div>
             <div class="informacion-producto">
@@ -116,7 +135,9 @@
 
           <article class="tarjeta-producto">
             <div class="contenedor-imagen-producto">
-              <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Velvet Petal Stain" class="imagen-producto">
+              <img
+                src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                alt="Velvet Petal Stain" class="imagen-producto">
             </div>
             <div class="informacion-producto">
               <p class="categoria-producto">LABIOS</p>
@@ -126,7 +147,9 @@
 
           <article class="tarjeta-producto">
             <div class="contenedor-imagen-producto">
-              <img src="https://images.unsplash.com/photo-1608248593802-8eb3a6569e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Cloud Whip Cream" class="imagen-producto">
+              <img
+                src="https://images.unsplash.com/photo-1608248593802-8eb3a6569e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                alt="Cloud Whip Cream" class="imagen-producto">
             </div>
             <div class="informacion-producto">
               <p class="categoria-producto">HIDRATACIÓN</p>
@@ -136,7 +159,9 @@
 
           <article class="tarjeta-producto">
             <div class="contenedor-imagen-producto">
-              <img src="https://images.unsplash.com/photo-1596462502278-27bf85033e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Aura Glow Blush" class="imagen-producto">
+              <img
+                src="https://images.unsplash.com/photo-1596462502278-27bf85033e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                alt="Aura Glow Blush" class="imagen-producto">
               <span class="etiqueta-producto nueva">NEW</span>
             </div>
             <div class="informacion-producto">
@@ -161,7 +186,9 @@
 
           <article class="tarjeta-vendido">
             <div class="imagen-vendido">
-              <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sérum Vitamina C">
+              <img
+                src="https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                alt="Sérum Vitamina C">
             </div>
             <div class="info-vendido">
               <p class="cat-vendido">SKINCARE</p>
@@ -176,7 +203,9 @@
 
           <article class="tarjeta-vendido">
             <div class="imagen-vendido">
-              <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Paleta Sombras">
+              <img
+                src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                alt="Paleta Sombras">
             </div>
             <div class="info-vendido">
               <p class="cat-vendido">MAQUILLAJE</p>
@@ -191,7 +220,9 @@
 
           <article class="tarjeta-vendido">
             <div class="imagen-vendido">
-              <img src="https://images.unsplash.com/photo-1608248593802-8eb3a6569e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Crema Hidratante">
+              <img
+                src="https://images.unsplash.com/photo-1608248593802-8eb3a6569e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                alt="Crema Hidratante">
             </div>
             <div class="info-vendido">
               <p class="cat-vendido">SKINCARE</p>
@@ -206,7 +237,9 @@
 
           <article class="tarjeta-vendido">
             <div class="imagen-vendido">
-              <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Labial Matte">
+              <img
+                src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                alt="Labial Matte">
             </div>
             <div class="info-vendido">
               <p class="cat-vendido">MAQUILLAJE</p>
@@ -305,13 +338,16 @@
       <!-- ===== EMPRENDE CON NOSOTROS ===== -->
       <section class="seccion-emprende">
         <div class="emprende-imagen">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Emprendedora">
+          <img
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80"
+            alt="Emprendedora">
         </div>
         <div class="emprende-contenido">
           <span class="badge-seccion"><i class="ph-fill ph-rocket"></i> OPORTUNIDAD</span>
           <h2 class="titulo-grande">Emprende con <span class="ritual-gradient">LUMINA</span></h2>
-          <p class="descripcion-seccion">Únete a nuestra red exclusiva de embajadoras. Construye tu propio negocio de belleza, recibe capacitación continua y genera ingresos compartiendo los productos que amas.</p>
-          
+          <p class="descripcion-seccion">Únete a nuestra red exclusiva de embajadoras. Construye tu propio negocio de
+            belleza, recibe capacitación continua y genera ingresos compartiendo los productos que amas.</p>
+
           <ul class="lista-beneficios">
             <li><span class="emoji-bullet">✨</span> Comisiones atractivas</li>
             <li><span class="emoji-bullet">🎁</span> Descuentos exclusivos en productos</li>
@@ -332,6 +368,7 @@
 
   </div>
 
+  <script src="js/modo-oscuro.js"></script>
   <script src="js/data.js"></script>
   <script src="js/carrito.js"></script>
   <script src="js/main.js"></script>
@@ -346,4 +383,5 @@
     }
   </script>
 </body>
+
 </html>

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
 <head>
@@ -7,84 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito - BeautyShop</title>
 
-```
-<!-- CSS -->
-<link rel="stylesheet" href="../css/estilos.css">
-```
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/estilos.css">
 
+    <!-- ICONOS -->
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 
 <body>
 
-```
-<div class="contenedor-carrito">
+    <main class="contenedor-carrito">
 
-    <!-- ENCABEZADO -->
-    <header class="encabezado-carrito">
+        <!-- ENCABEZADO -->
+        <header class="encabezado-carrito">
 
-        <h1>🛒 Carrito de Compras</h1>
+            <h1>
+                <i class='bx bx-shopping-bag'></i>
+                Mi Carrito
+            </h1>
 
-        <a href="../index.html">
-            ← Seguir comprando
-        </a>
+            <a href="../index.html">
+                <i class='bx bx-arrow-back'></i>
+                Volver a la tienda
+            </a>
 
-    </header>
+        </header>
 
-    <!-- MENSAJE CARRITO VACÍO -->
-    <p
-        id="carrito-vacio"
-        class="mensaje-carrito-vacio"
-        hidden>
-        Tu carrito está vacío.
-    </p>
+        <!-- LISTA DE PRODUCTOS -->
+        <section id="lista-carrito" class="lista-carrito">
+        </section>
 
-    <!-- PRODUCTOS -->
-    <div
-        id="lista-carrito"
-        class="lista-carrito">
-    </div>
+        <!-- MENSAJE CARRITO VACÍO -->
+        <div id="carrito-vacio" hidden>
+            <h2>Tu carrito está vacío</h2>
+            <p>Agrega productos desde el catálogo.</p>
+        </div>
 
-    <!-- RESUMEN -->
-    <aside class="resumen-carrito">
+        <!-- RESUMEN -->
+        <aside class="resumen-carrito">
 
-        <h2>Resumen del pedido</h2>
+            <h2>Resumen del Pedido</h2>
 
-        <p>
-            <span>Subtotal:</span>
-            <span id="subtotal-carrito">$0</span>
-        </p>
+            <p>
+                <span>Subtotal</span>
+                <span id="subtotal-carrito">$0</span>
+            </p>
 
-        <p>
-            <span>Descuentos:</span>
-            <span id="descuento-carrito">$0</span>
-        </p>
+            <p>
+                <span>Descuento</span>
+                <span id="descuento-carrito">$0</span>
+            </p>
 
-        <p class="total-carrito">
-            <span>Total:</span>
-            <strong id="total-carrito">$0</strong>
-        </p>
+            <p class="total-carrito">
+                <strong>Total</strong>
+                <strong id="total-carrito">$0</strong>
+            </p>
 
-        <button
-            type="button"
-            id="boton-comprar"
-            disabled>
-            Finalizar compra
-        </button>
+            <button id="boton-comprar">
+                Finalizar Compra
+            </button>
 
-        <button
-            type="button"
-            id="boton-vaciar">
-            Vaciar carrito
-        </button>
+            <button id="boton-vaciar">
+                Vaciar Carrito
+            </button>
 
-    </aside>
+        </aside>
 
-</div>
+    </main>
 
-<!-- SCRIPTS -->
-<script src="../js/data.js"></script>
-<script src="../js/carrito.js"></script>
-```
+    <!-- IMPORTANTE -->
+    <script src="../js/data.js"></script>
+    <script src="../js/carrito.js"></script>
 
 </body>
 
