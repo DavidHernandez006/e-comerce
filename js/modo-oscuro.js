@@ -1,3 +1,5 @@
+// Gestor de tema claro/oscuro
+// Aquí va: Clase TemaManager para cambiar entre modo claro y oscuro, guardar preferencia en localStorage
 // ============================================================
 // modo-oscuro.js — Gestor de tema claro/oscuro
 // Clase TemaManager para cambiar entre modo claro y oscuro
@@ -107,21 +109,39 @@ class TemaManager {
 // Crear instancia global del gestor de temas
 const temaManager = new TemaManager();
 
-// Cuando el DOM esté listo, conectar el botón toggle
+// Cuando el DOM esté listo, conectar el/los botones toggle (soporta varios selectores)
 document.addEventListener('DOMContentLoaded', function() {
-  const botonTema = document.getElementById('boton-toggle-tema');
-  
-  if (botonTema) {
-    botonTema.addEventListener('click', function() {
+  // Soportar varios identificadores o clases usados en distintas páginas
+  const posibles = [
+    '#boton-toggle-tema',
+    '#btn-modo-oscuro',
+    '.btn-modo-oscuro',
+    '.boton-toggle-tema'
+  ];
+
+  const botones = [];
+  posibles.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => botones.push(el));
+  });
+
+  botones.forEach(boton => {
+    // Marcar estado inicial
+    boton.setAttribute('role', 'button');
+    boton.setAttribute('tabindex', '0');
+    boton.setAttribute('aria-pressed', temaManager.obtenerTemaActual() === 'claro' ? 'true' : 'false');
+
+    boton.addEventListener('click', function(event) {
       temaManager.alternar();
+      // actualizar aria-pressed
+      boton.setAttribute('aria-pressed', temaManager.obtenerTemaActual() === 'claro' ? 'true' : 'false');
     });
 
-    // Accesibilidad: activar con teclado (Enter o Espacio)
-    botonTema.addEventListener('keydown', function(evento) {
+    boton.addEventListener('keydown', function(evento) {
       if (evento.key === 'Enter' || evento.key === ' ') {
         evento.preventDefault();
         temaManager.alternar();
+        boton.setAttribute('aria-pressed', temaManager.obtenerTemaActual() === 'claro' ? 'true' : 'false');
       }
     });
-  }
+  });
 });

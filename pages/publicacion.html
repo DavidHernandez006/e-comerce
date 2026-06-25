@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle Producto - BeautyShop</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <link rel="stylesheet" href="../css/estilos.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/modo-oscuro.css">
+  
+  <style>
+    .contenedor-detalle {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .breadcrumb a {
+      color: var(--primary-color);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .grid-detalle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .galeria-producto {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .imagen-principal {
+      width: 100%;
+      height: 500px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-secondary);
+    }
+
+    .imagen-principal img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .miniaturas {
+      display: flex;
+      gap: 10px;
+    }
+
+    .miniatura {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .miniatura img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .miniatura.activa {
+      border-color: var(--primary-color);
+    }
+
+    .miniatura:hover {
+      border-color: var(--primary-color);
+    }
+
+    .info-producto-detalle {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .encabezado-detalle {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 20px;
+    }
+
+    .categoria-detalle {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .titulo-detalle {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 15px;
+    }
+
+    .rating-detalle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .estrellas {
+      color: #ffc107;
+    }
+
+    .precio-detalle {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .precio-original {
+      font-size: 18px;
+      color: var(--text-secondary);
+      text-decoration: line-through;
+      margin-right: 15px;
+    }
+
+    .ahorro {
+      font-size: 14px;
+      color: #27ae60;
+      font-weight: 600;
+    }
+
+    .descripcion-detalle {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 20px 0;
+    }
+
+    .caracteristicas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      padding: 20px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+    }
+
+    .caracteristica {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .caracteristica-icono {
+      font-size: 20px;
+    }
+
+    .caracteristica-texto {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .controles-cantidad {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .selector-cantidad {
+      display: flex;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .btn-cantidad {
+      padding: 8px 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-cantidad:hover {
+      background: var(--bg-secondary);
+    }
+
+    .cantidad-input {
+      padding: 8px 12px;
+      border: none;
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      background: transparent;
+      width: 50px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .acciones-compra {
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn-comprar {
+      flex: 1;
+      padding: 15px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-comprar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(255, 107, 157, 0.3);
+    }
+
+    .btn-favorito-detalle {
+      padding: 15px 20px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-favorito-detalle.activo {
+      background: rgba(255, 107, 157, 0.1);
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .especificaciones {
+      background: var(--bg-secondary);
+      padding: 30px;
+      border-radius: 8px;
+      margin: 30px 0;
+    }
+
+    .especificacion-fila {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 30px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .especificacion-fila:last-child {
+      border-bottom: none;
+    }
+
+    .especificacion-label {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .especificacion-valor {
+      color: var(--text-secondary);
+    }
+
+    .productos-relacionados {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .titulo-relacionados {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .grid-relacionados {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-detalle {
+        grid-template-columns: 1fr;
+      }
+
+      .caracteristicas {
+        grid-template-columns: 1fr;
+      }
+
+      .acciones-compra {
+        flex-direction: column;
+      }
+
+      .especificacion-fila {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navegación (navbar similar a index.html) -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <span>BeautyShop</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="./catalogo.html">Catálogo</a></li>
+        <li><a href="./carrito.html">Carrito</a></li>
+      </ul>
+      <div class="nav-icons">
+        <a href="./carrito.html" class="icono-bolsa">
+          <i class="ph ph-shopping-bag"></i>
+          <span class="badge-header">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenedor principal -->
+  <main class="contenedor-detalle">
+    
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="../index.html">Inicio</a>
+      <span>/</span>
+      <a href="./catalogo.html">Catálogo</a>
+      <span>/</span>
+      <span id="breadcrumb-producto">Producto</span>
+    </div>
+
+    <!-- Detalle del producto -->
+    <div class="grid-detalle">
+      <!-- Galería -->
+      <div class="galeria-producto">
+        <div class="imagen-principal">
+          <img id="imagen-principal" src="" alt="Producto">
+        </div>
+        <div class="miniaturas">
+          <div class="miniatura activa" onclick="cambiarImagen(this)">
+            <img id="miniatura-1" src="" alt="Vista 1">
+          </div>
+          <div class="miniatura" onclick="cambiarImagen(this)">
+            <img id="miniatura-2" src="" alt="Vista 2">
+          </div>
+          <div class="miniatura" onclick="cambiarImagen(this)">
+            <img id="miniatura-3" src="" alt="Vista 3">
+          </div>
+        </div>
+      </div>
+
+      <!-- Información -->
+      <div class="info-producto-detalle">
+        <div class="encabezado-detalle">
+          <p class="categoria-detalle" id="categoria-detalle">Categoría</p>
+          <h1 class="titulo-detalle" id="titulo-detalle">Nombre del Producto</h1>
+          <div class="rating-detalle">
+            <span class="estrellas" id="estrellas">⭐⭐⭐⭐⭐</span>
+            <span id="resenas-detalle">(0 reseñas)</span>
+          </div>
+        </div>
+
+        <!-- Precio -->
+        <div>
+          <div id="precio-container">
+            <span class="precio-detalle" id="precio-detalle">$0</span>
+          </div>
+          <p class="descripcion-detalle" id="descripcion-detalle">Descripción del producto</p>
+        </div>
+
+        <!-- Características -->
+        <div class="caracteristicas" id="caracteristicas">
+          <div class="caracteristica">
+            <span class="caracteristica-icono">✓</span>
+            <span class="caracteristica-texto">Stock disponible</span>
+          </div>
+          <div class="caracteristica">
+            <span class="caracteristica-icono">✓</span>
+            <span class="caracteristica-texto">Envío gratis</span>
+          </div>
+          <div class="caracteristica">
+            <span class="caracteristica-icono">✓</span>
+            <span class="caracteristica-texto">Devolución gratis</span>
+          </div>
+          <div class="caracteristica">
+            <span class="caracteristica-icono">✓</span>
+            <span class="caracteristica-texto">Garantía</span>
+          </div>
+        </div>
+
+        <!-- Controles -->
+        <div class="controles-cantidad">
+          <div class="selector-cantidad">
+            <button class="btn-cantidad" onclick="decrementarCantidad()">-</button>
+            <input type="number" class="cantidad-input" id="cantidad" value="1" min="1">
+            <button class="btn-cantidad" onclick="incrementarCantidad()">+</button>
+          </div>
+          <span id="stock-disponible" class="stock-info">Stock: 50</span>
+        </div>
+
+        <!-- Acciones de compra -->
+        <div class="acciones-compra">
+          <button class="btn-comprar" onclick="agregarAlCarritoDetalle()">
+            <i class="ph ph-shopping-cart"></i> Agregar al Carrito
+          </button>
+          <button class="btn-favorito-detalle" id="btn-favorito" onclick="toggleFavoritoDetalle()">
+            <i class="ph ph-heart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Especificaciones -->
+    <div class="especificaciones">
+      <h2 style="margin-bottom: 20px;">Especificaciones</h2>
+      <div id="especificaciones-container">
+        <!-- Se llenarán con JS -->
+      </div>
+    </div>
+
+    <!-- Productos Relacionados -->
+    <div class="productos-relacionados">
+      <h2 class="titulo-relacionados">Productos Relacionados</h2>
+      <div class="grid-relacionados" id="productos-relacionados">
+        <!-- Se llenarán con JS -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    let productoActual = null;
+    let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+
+    // Obtener ID del producto desde la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productoId = parseInt(urlParams.get('id'));
+
+    // Cargar detalles del producto
+    document.addEventListener('DOMContentLoaded', function() {
+      productoActual = productos.find(p => p.id === productoId);
+
+      if (!productoActual) {
+        document.body.innerHTML = '<h1>Producto no encontrado</h1>';
+        return;
+      }
+
+      // Llenar información del producto
+      document.getElementById('imagen-principal').src = productoActual.imagen;
+      document.getElementById('miniatura-1').src = productoActual.imagen;
+      document.getElementById('miniatura-2').src = productoActual.imagen;
+      document.getElementById('miniatura-3').src = productoActual.imagen;
+
+      document.getElementById('breadcrumb-producto').textContent = productoActual.nombre;
+      document.getElementById('categoria-detalle').textContent = obtenerNombreCategoria(productoActual.categoriaId).toUpperCase();
+      document.getElementById('titulo-detalle').textContent = productoActual.nombre;
+      document.getElementById('descripcion-detalle').textContent = productoActual.descripcion;
+      document.getElementById('resenas-detalle').textContent = `(${productoActual.resenas} reseñas)`;
+      document.getElementById('estrellas').textContent = '⭐'.repeat(Math.floor(productoActual.calificacion));
+      document.getElementById('stock-disponible').textContent = `Stock: ${productoActual.stock}`;
+
+      // Precio
+      let precioHTML = `<span class="precio-detalle">${formatearPrecio(productoActual.precio)}</span>`;
+      if (productoActual.descuento > 0) {
+        const precioConDescuento = productoActual.precio - (productoActual.precio * productoActual.descuento / 100);
+        const ahorro = productoActual.precio - precioConDescuento;
+        precioHTML = `
+          <div style="display: flex; gap: 15px; align-items: center;">
+            <span class="precio-detalle">${formatearPrecio(precioConDescuento)}</span>
+            <span class="precio-original">${formatearPrecio(productoActual.precio)}</span>
+            <span class="ahorro">Ahorras: ${formatearPrecio(ahorro)}</span>
+          </div>
+        `;
+      }
+      document.getElementById('precio-container').innerHTML = precioHTML;
+
+      // Especificaciones
+      const especificacionesHTML = `
+        <div class="especificacion-fila">
+          <div class="especificacion-label">Código de Producto:</div>
+          <div class="especificacion-valor">#${productoActual.id}</div>
+        </div>
+        <div class="especificacion-fila">
+          <div class="especificacion-label">Categoría:</div>
+          <div class="especificacion-valor">${obtenerNombreCategoria(productoActual.categoriaId)}</div>
+        </div>
+        <div class="especificacion-fila">
+          <div class="especificacion-label">Disponibilidad:</div>
+          <div class="especificacion-valor">${productoActual.stock > 0 ? 'En Stock' : 'Sin Stock'}</div>
+        </div>
+        <div class="especificacion-fila">
+          <div class="especificacion-label">Vendedor:</div>
+          <div class="especificacion-valor">${productoActual.vendedor}</div>
+        </div>
+        <div class="especificacion-fila">
+          <div class="especificacion-label">Etiquetas:</div>
+          <div class="especificacion-valor">${productoActual.etiquetas.join(', ')}</div>
+        </div>
+      `;
+      document.getElementById('especificaciones-container').innerHTML = especificacionesHTML;
+
+      // Productos relacionados
+      const relacionados = productos
+        .filter(p => p.categoriaId === productoActual.categoriaId && p.id !== productoActual.id)
+        .slice(0, 4);
+
+      let relacionadosHTML = '';
+      relacionados.forEach(prod => {
+        relacionadosHTML += crearTarjetaProducto(prod);
+      });
+      document.getElementById('productos-relacionados').innerHTML = relacionadosHTML;
+
+      // Actualizar botón de favorito
+      actualizarBtnFavorito();
+      actualizarContadorCarrito();
+    });
+
+    function cambiarImagen(elemento) {
+      document.querySelectorAll('.miniatura').forEach(m => m.classList.remove('activa'));
+      elemento.classList.add('activa');
+      
+      const src = elemento.querySelector('img').src;
+      document.getElementById('imagen-principal').src = src;
+    }
+
+    function incrementarCantidad() {
+      const input = document.getElementById('cantidad');
+      const max = parseInt(document.getElementById('stock-disponible').textContent.split(': ')[1]);
+      if (parseInt(input.value) < max) {
+        input.value = parseInt(input.value) + 1;
+      }
+    }
+
+    function decrementarCantidad() {
+      const input = document.getElementById('cantidad');
+      if (parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+      }
+    }
+
+    function agregarAlCarritoDetalle() {
+      const cantidad = parseInt(document.getElementById('cantidad').value);
+      
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const itemExistente = carrito.find(item => item.id === productoActual.id);
+
+      if (itemExistente) {
+        itemExistente.cantidad += cantidad;
+      } else {
+        carrito.push({
+          id: productoActual.id,
+          nombre: productoActual.nombre,
+          precio: productoActual.precio,
+          imagen: productoActual.imagen,
+          cantidad: cantidad
+        });
+      }
+
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarContadorCarrito();
+      mostrarNotificacion(`${cantidad} ${productoActual.nombre} agregado al carrito`);
+    }
+
+    function toggleFavoritoDetalle() {
+      const indice = favoritos.indexOf(productoActual.id);
+      if (indice > -1) {
+        favoritos.splice(indice, 1);
+      } else {
+        favoritos.push(productoActual.id);
+      }
+      localStorage.setItem('favoritos', JSON.stringify(favoritos));
+      actualizarBtnFavorito();
+    }
+
+    function actualizarBtnFavorito() {
+      const btn = document.getElementById('btn-favorito');
+      const esFavorito = favoritos.includes(productoActual.id);
+      if (esFavorito) {
+        btn.classList.add('activo');
+        btn.innerHTML = '<i class="ph ph-heart-fill"></i>';
+      } else {
+        btn.classList.remove('activo');
+        btn.innerHTML = '<i class="ph ph-heart"></i>';
+      }
+    }
+  </script>
+</body>
+</html>

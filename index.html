@@ -20,9 +20,6 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="css/estilos.css">
   <link rel="stylesheet" href="css/modo-oscuro.css">
-  <style>
-
-  </style>
 </head>
 
 <body>
@@ -32,23 +29,26 @@
     <!-- Barra lateral izquierda -->
     <aside class="barra-lateral">
       <div class="logo">
-        <h1 class="logo-nombre gradient-text">Lumina</h1>
+        <h1 class="logo-nombre gradient-text">BeautyShop</h1>
         <p class="logo-slogan">MIDNIGHT GLOW</p>
       </div>
 
       <nav class="navegacion-lateral">
         <ul class="lista-navegacion">
           <li class="opcion-navegacion activa">
-            <a href="#"><i class="ph ph-squares-four"></i> Catálogo</a>
+            <a href="javascript:scrollToSection('seccion-destacados')" onclick="activarMenu(0)"><i class="ph ph-squares-four"></i> Catálogo</a>
           </li>
           <li class="opcion-navegacion">
-            <a href="#"><i class="ph ph-sparkle"></i> Nueva Colección</a>
+            <a href="javascript:scrollToSection('seccion-nuevos')" onclick="activarMenu(1)"><i class="ph ph-sparkle"></i> Nueva Colección</a>
           </li>
           <li class="opcion-navegacion">
-            <a href="#"><i class="ph ph-tag"></i> Ofertas</a>
+            <a href="javascript:scrollToSection('seccion-ofertas')" onclick="activarMenu(2)"><i class="ph ph-tag"></i> Ofertas</a>
           </li>
           <li class="opcion-navegacion">
-            <a href="#"><i class="ph ph-trend-up"></i> Más Vendidos</a>
+            <a href="javascript:scrollToSection('seccion-vendidos')" onclick="activarMenu(3)"><i class="ph ph-trend-up"></i> Más Vendidos</a>
+          </li>
+          <li class="opcion-navegacion">
+            <a href="pages/favoritos.html"><i class="ph ph-heart"></i> Favoritos</a>
           </li>
         </ul>
       </nav>
@@ -81,9 +81,9 @@
         </div>
 
         <div class="acciones-usuario">
-          <a href="#" class="enlace-favoritos">
-            <i class="ph ph-heart"></i> FAVORITOS
-          </a>
+          <button id="boton-toggle-tema" class="boton-toggle-tema" title="Cambiar tema">
+            <span class="etiqueta-tema">🌙 Oscuro</span>
+          </button>
           <a href="pages/carrito.html" class="icono-bolsa">
             <i class="ph ph-shopping-bag"></i>
             <span class="badge-header">2</span>
@@ -109,7 +109,7 @@
       </section>
 
       <!-- Productos -->
-      <section class="seccion-seleccion-curada">
+      <section class="seccion-seleccion-curada" id="seccion-destacados">
         <div class="encabezado-seccion">
           <div>
             <p class="subtitulo-seccion">ETHEREAL ESSENTIALS</p>
@@ -119,62 +119,41 @@
         </div>
 
         <div class="fila-productos">
+          <!-- Se llenarán con JavaScript desde main.js -->
+        </div>
+      </section>
 
-          <article class="tarjeta-producto">
-            <div class="contenedor-imagen-producto">
-              <img
-                src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                alt="Dewy Drops B5" class="imagen-producto">
-              <span class="etiqueta-producto destacada">BESTSELLER</span>
-            </div>
-            <div class="informacion-producto">
-              <p class="categoria-producto">SÉRUM ILUMINADOR</p>
-              <h3 class="nombre-producto">Dewy Drops B5</h3>
-            </div>
-          </article>
+      <!-- NUEVA COLECCIÓN -->
+      <section class="seccion-nuevos" id="seccion-nuevos">
+        <div class="encabezado-seccion">
+          <div>
+            <p class="subtitulo-seccion">NOVEDADES</p>
+            <h2 class="titulo-seccion">Nueva Colección</h2>
+          </div>
+          <a href="pages/catalogo.html" class="enlace-ver-todo">Ver todo</a>
+        </div>
 
-          <article class="tarjeta-producto">
-            <div class="contenedor-imagen-producto">
-              <img
-                src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                alt="Velvet Petal Stain" class="imagen-producto">
-            </div>
-            <div class="informacion-producto">
-              <p class="categoria-producto">LABIOS</p>
-              <h3 class="nombre-producto">Velvet Petal Stain</h3>
-            </div>
-          </article>
+        <div class="fila-productos" id="grid-nuevos">
+          <!-- Se llenarán con JavaScript desde main.js -->
+        </div>
+      </section>
 
-          <article class="tarjeta-producto">
-            <div class="contenedor-imagen-producto">
-              <img
-                src="https://images.unsplash.com/photo-1608248593802-8eb3a6569e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                alt="Cloud Whip Cream" class="imagen-producto">
-            </div>
-            <div class="informacion-producto">
-              <p class="categoria-producto">HIDRATACIÓN</p>
-              <h3 class="nombre-producto">Cloud Whip Cream</h3>
-            </div>
-          </article>
+      <!-- OFERTAS -->
+      <section class="seccion-ofertas" id="seccion-ofertas">
+        <div class="encabezado-ofertas">
+          <span class="badge-seccion"><i class="ph-fill ph-tag"></i> PROMOCIONES</span>
+          <h2 class="titulo-grande">Ofertas Especiales</h2>
+          <div class="linea-decorativa"></div>
+          <p class="descripcion-seccion">No te pierdas nuestras mejores promociones del mes</p>
+        </div>
 
-          <article class="tarjeta-producto">
-            <div class="contenedor-imagen-producto">
-              <img
-                src="https://images.unsplash.com/photo-1596462502278-27bf85033e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                alt="Aura Glow Blush" class="imagen-producto">
-              <span class="etiqueta-producto nueva">NEW</span>
-            </div>
-            <div class="informacion-producto">
-              <p class="categoria-producto">MAQUILLAJE</p>
-              <h3 class="nombre-producto">Aura Glow Blush</h3>
-            </div>
-          </article>
-
+        <div class="grid-ofertas">
+          <!-- Se llenarán con JavaScript desde main.js -->
         </div>
       </section>
 
       <!-- ===== PRODUCTOS MÁS VENDIDOS ===== -->
-      <section class="seccion-mas-vendidos">
+      <section class="seccion-mas-vendidos" id="seccion-vendidos">
         <div class="encabezado-vendidos">
           <span class="badge-seccion"><i class="ph-fill ph-star"></i> MÁS VENDIDOS</span>
           <h2 class="titulo-grande">Productos Destacados</h2>
@@ -183,75 +162,7 @@
         </div>
 
         <div class="grid-mas-vendidos">
-
-          <article class="tarjeta-vendido">
-            <div class="imagen-vendido">
-              <img
-                src="https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                alt="Sérum Vitamina C">
-            </div>
-            <div class="info-vendido">
-              <p class="cat-vendido">SKINCARE</p>
-              <h3>Sérum Vitamina C Iluminador</h3>
-              <p class="desc-vendido">Sérum facial concentrado con vitamina C pura al 20%. Ilumina,...</p>
-              <div class="fila-precio">
-                <span class="precio-vendido">$89.000 COP</span>
-                <button class="btn-agregar"><i class="ph ph-shopping-cart"></i> Agregar</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="tarjeta-vendido">
-            <div class="imagen-vendido">
-              <img
-                src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                alt="Paleta Sombras">
-            </div>
-            <div class="info-vendido">
-              <p class="cat-vendido">MAQUILLAJE</p>
-              <h3>Paleta de Sombras Sunset Glow</h3>
-              <p class="desc-vendido">18 tonos cálidos y metálicos inspirados en atardeceres. Textura...</p>
-              <div class="fila-precio">
-                <span class="precio-vendido">$125.000 COP</span>
-                <button class="btn-agregar"><i class="ph ph-shopping-cart"></i> Agregar</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="tarjeta-vendido">
-            <div class="imagen-vendido">
-              <img
-                src="https://images.unsplash.com/photo-1608248593802-8eb3a6569e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                alt="Crema Hidratante">
-            </div>
-            <div class="info-vendido">
-              <p class="cat-vendido">SKINCARE</p>
-              <h3>Crema Hidratante con Ácido Hialurónico</h3>
-              <p class="desc-vendido">Hidratación profunda de 72 horas con ácido hialurónico de triple peso...</p>
-              <div class="fila-precio">
-                <span class="precio-vendido">$72.000 COP</span>
-                <button class="btn-agregar"><i class="ph ph-shopping-cart"></i> Agregar</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="tarjeta-vendido">
-            <div class="imagen-vendido">
-              <img
-                src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                alt="Labial Matte">
-            </div>
-            <div class="info-vendido">
-              <p class="cat-vendido">MAQUILLAJE</p>
-              <h3>Labial Matte Velvet Rose</h3>
-              <p class="desc-vendido">Labial líquido mate de larga duración con acabado aterciopelado. Tono ro...</p>
-              <div class="fila-precio">
-                <span class="precio-vendido">$45.000 COP</span>
-                <button class="btn-agregar"><i class="ph ph-shopping-cart"></i> Agregar</button>
-              </div>
-            </div>
-          </article>
-
+          <!-- Se llenarán con JavaScript desde main.js -->
         </div>
       </section>
 
@@ -371,6 +282,7 @@
   <script src="js/modo-oscuro.js"></script>
   <script src="js/data.js"></script>
   <script src="js/carrito.js"></script>
+  <script src="js/modo-oscuro.js"></script>
   <script src="js/main.js"></script>
   <script>
     function mostrarRutina(tipo) {

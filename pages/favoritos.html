@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Favoritos - BeautyShop</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <link rel="stylesheet" href="../css/estilos.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/modo-oscuro.css">
+  
+  <style>
+    .contenedor-favoritos {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .encabezado-favoritos {
+      margin-bottom: 40px;
+    }
+
+    .titulo-favoritos {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .contador-favoritos {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .grid-favoritos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .tarjeta-favorito {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .tarjeta-favorito:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-5px);
+    }
+
+    .imagen-favorito {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      background: var(--bg-primary);
+      position: relative;
+    }
+
+    .imagen-favorito img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .btn-eliminar-favorito {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-eliminar-favorito:hover {
+      background: var(--danger-color);
+      color: white;
+    }
+
+    .info-favorito {
+      padding: 15px;
+    }
+
+    .categoria-favorito {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .nombre-favorito {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .precio-favorito {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .btn-agregar-desde-favorito {
+      width: 100%;
+      padding: 10px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-agregar-desde-favorito:hover {
+      transform: scale(1.02);
+    }
+
+    .contenedor-vacio {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .icono-vacio {
+      font-size: 60px;
+      margin-bottom: 20px;
+      color: var(--text-secondary);
+    }
+
+    .titulo-vacio {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .descripcion-vacio {
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }
+
+    .btn-explorar {
+      padding: 12px 30px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .btn-explorar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(255, 107, 157, 0.3);
+    }
+
+    .acciones-favoritos {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .btn-accion {
+      padding: 10px 20px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-accion:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+      .grid-favoritos {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navegación -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <span>BeautyShop</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="./catalogo.html">Catálogo</a></li>
+        <li><a href="./carrito.html">Carrito</a></li>
+      </ul>
+      <div class="nav-icons">
+        <a href="./carrito.html" class="icono-bolsa">
+          <i class="ph ph-shopping-bag"></i>
+          <span class="badge-header">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenedor principal -->
+  <main class="contenedor-favoritos">
+    
+    <!-- Encabezado -->
+    <div class="encabezado-favoritos">
+      <h1 class="titulo-favoritos">❤️ Mis Favoritos</h1>
+      <p class="contador-favoritos"><span id="contador">0</span> productos guardados</p>
+    </div>
+
+    <!-- Acciones -->
+    <div class="acciones-favoritos" id="acciones" style="display: none;">
+      <button class="btn-accion" onclick="agregarTodoAlCarrito()">
+        <i class="ph ph-shopping-cart"></i> Agregar Todo al Carrito
+      </button>
+      <button class="btn-accion" onclick="limpiarFavoritos()">
+        <i class="ph ph-trash"></i> Limpiar Favoritos
+      </button>
+    </div>
+
+    <!-- Grid de favoritos -->
+    <div class="grid-favoritos" id="grid-favoritos">
+      <!-- Se llenarán con JS -->
+    </div>
+
+    <!-- Estado vacío -->
+    <div class="contenedor-vacio" id="contenedor-vacio" style="display: none;">
+      <div class="icono-vacio">💔</div>
+      <h2 class="titulo-vacio">No tienes favoritos</h2>
+      <p class="descripcion-vacio">Explora nuestro catálogo y agrega tus productos favoritos</p>
+      <a href="./catalogo.html" class="btn-explorar">Explorar Catálogo</a>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      cargarFavoritos();
+    });
+
+    function cargarFavoritos() {
+      const gridFavoritos = document.getElementById('grid-favoritos');
+      const contenedorVacio = document.getElementById('contenedor-vacio');
+      const acciones = document.getElementById('acciones');
+      const contador = document.getElementById('contador');
+
+      gridFavoritos.innerHTML = '';
+      contador.textContent = favoritos.length;
+
+      if (favoritos.length === 0) {
+        gridFavoritos.style.display = 'none';
+        contenedorVacio.style.display = 'block';
+        acciones.style.display = 'none';
+        return;
+      }
+
+      gridFavoritos.style.display = 'grid';
+      contenedorVacio.style.display = 'none';
+      acciones.style.display = 'flex';
+
+      favoritos.forEach(id => {
+        const producto = productos.find(p => p.id === id);
+        if (producto) {
+          gridFavoritos.innerHTML += crearTarjetaFavoritoHTML(producto);
+        }
+      });
+    }
+
+    function crearTarjetaFavoritoHTML(producto) {
+      const precioFormateado = formatearPrecio(producto.precio);
+      return `
+        <div class="tarjeta-favorito" onclick="irADetalleProducto(${producto.id})">
+          <div class="imagen-favorito">
+            <img src="${producto.imagen}" alt="${producto.nombre}">
+            <button class="btn-eliminar-favorito" onclick="eliminarDelFavorito(event, ${producto.id})">
+              <i class="ph ph-x"></i>
+            </button>
+          </div>
+          <div class="info-favorito">
+            <p class="categoria-favorito">${obtenerNombreCategoria(producto.categoriaId)}</p>
+            <h3 class="nombre-favorito">${producto.nombre}</h3>
+            <div class="precio-favorito">${precioFormateado}</div>
+            <button class="btn-agregar-desde-favorito" onclick="agregarAlCarritoFavorito(event, ${producto.id})">
+              Agregar al Carrito
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function eliminarDelFavorito(event, productoId) {
+      event.stopPropagation();
+      favoritos = favoritos.filter(id => id !== productoId);
+      localStorage.setItem('favoritos', JSON.stringify(favoritos));
+      cargarFavoritos();
+      mostrarNotificacion('Producto eliminado de favoritos');
+    }
+
+    function agregarAlCarritoFavorito(event, productoId) {
+      event.stopPropagation();
+      
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const producto = productos.find(p => p.id === productoId);
+      
+      const itemExistente = carrito.find(item => item.id === productoId);
+      if (itemExistente) {
+        itemExistente.cantidad += 1;
+      } else {
+        carrito.push({
+          id: producto.id,
+          nombre: producto.nombre,
+          precio: producto.precio,
+          imagen: producto.imagen,
+          cantidad: 1
+        });
+      }
+      
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarContadorCarrito();
+      mostrarNotificacion(`${producto.nombre} agregado al carrito`);
+    }
+
+    function agregarTodoAlCarrito() {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      
+      favoritos.forEach(id => {
+        const producto = productos.find(p => p.id === id);
+        if (producto) {
+          const itemExistente = carrito.find(item => item.id === id);
+          if (itemExistente) {
+            itemExistente.cantidad += 1;
+          } else {
+            carrito.push({
+              id: producto.id,
+              nombre: producto.nombre,
+              precio: producto.precio,
+              imagen: producto.imagen,
+              cantidad: 1
+            });
+          }
+        }
+      });
+      
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarContadorCarrito();
+      mostrarNotificacion('Todos los favoritos se agregaron al carrito');
+    }
+
+    function limpiarFavoritos() {
+      if (confirm('¿Estás seguro de que quieres limpiar todos los favoritos?')) {
+        favoritos = [];
+        localStorage.setItem('favoritos', JSON.stringify(favoritos));
+        cargarFavoritos();
+        mostrarNotificacion('Favoritos eliminados');
+      }
+    }
+  </script>
+</body>
+</html>
