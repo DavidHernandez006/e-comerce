@@ -567,25 +567,11 @@
 
     function agregarAlCarritoDetalle() {
       const cantidad = parseInt(document.getElementById('cantidad').value);
-      
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      const itemExistente = carrito.find(item => item.id === productoActual.id);
-
-      if (itemExistente) {
-        itemExistente.cantidad += cantidad;
+      if (typeof bsCarrito !== 'undefined') {
+        bsCarrito.agregar(productoActual.id, cantidad);
       } else {
-        carrito.push({
-          id: productoActual.id,
-          nombre: productoActual.nombre,
-          precio: productoActual.precio,
-          imagen: productoActual.imagen,
-          cantidad: cantidad
-        });
+        console.error("CarritoManager no definido");
       }
-
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      actualizarContadorCarrito();
-      mostrarNotificacion(`${cantidad} ${productoActual.nombre} agregado al carrito`);
     }
 
     function toggleFavoritoDetalle() {

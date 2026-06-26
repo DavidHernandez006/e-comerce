@@ -4,80 +4,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito - BeautyShop</title>
+    <title>Ritual de Compra | BeautyShop</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="../css/estilos.css">
-
-    <!-- ICONOS -->
-    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/modo-oscuro.css">
 </head>
 
-<body>
+<body class="pagina-carrito">
 
     <main class="contenedor-carrito">
 
         <!-- ENCABEZADO -->
         <header class="encabezado-carrito">
+            <div>
+                <p class="eyebrow-hero" style="margin-bottom: 8px;">TU SELECCIÓN EXCLUSIVA</p>
+                <h1 class="gradient-text">Mi Carrito</h1>
+            </div>
 
-            <h1>
-                <i class='bx bx-shopping-bag'></i>
-                Mi Carrito
-            </h1>
-
-            <a href="../index.html">
-                <i class='bx bx-arrow-back'></i>
-                Volver a la tienda
+            <a href="../index.html" class="enlace-explorar" style="text-decoration: none;">
+                <i class="ph ph-arrow-left"></i> Seguir Explorando
             </a>
-
         </header>
 
         <!-- LISTA DE PRODUCTOS -->
         <section id="lista-carrito" class="lista-carrito">
+            <!-- Renderizado dinámico desde js/carrito.js -->
         </section>
 
         <!-- MENSAJE CARRITO VACÍO -->
-        <div id="carrito-vacio" hidden>
-            <h2>Tu carrito está vacío</h2>
-            <p>Agrega productos desde el catálogo.</p>
+        <div id="carrito-vacio" class="glassmorphism-card" style="text-align: center; padding: 60px;" hidden>
+            <i class="ph ph-shopping-bag-open" style="font-size: 4rem; color: var(--color-acento-rosa); margin-bottom: 20px;"></i>
+            <h2>Tu carrito está esperando su brillo</h2>
+            <p style="color: #888; margin-bottom: 30px;">Aún no has añadido tesoros a tu colección.</p>
+            <a href="catalogo.html" class="boton-comprar-ahora" style="display: inline-block;">Ver Catálogo</a>
         </div>
 
         <!-- RESUMEN -->
-        <aside class="resumen-carrito">
+        <aside class="resumen-carrito glassmorphism-card">
+            <h2>Resumen del Ritual</h2>
 
-            <h2>Resumen del Pedido</h2>
-
-            <p>
+            <div class="linea-resumen">
                 <span>Subtotal</span>
                 <span id="subtotal-carrito">$0</span>
-            </p>
+            </div>
 
-            <p>
-                <span>Descuento</span>
-                <span id="descuento-carrito">$0</span>
-            </p>
+            <div class="linea-resumen" style="display: none;">
+                <span>Descuento Especial</span>
+                <span id="descuento-carrito" style="color: #22c55e;">-$0</span>
+            </div>
 
-            <p class="total-carrito">
-                <strong>Total</strong>
-                <strong id="total-carrito">$0</strong>
-            </p>
+            <div class="linea-resumen">
+                <span>Envío Premium</span>
+                <span style="color: #22c55e;">Gratis</span>
+            </div>
 
-            <button id="boton-comprar">
-                Finalizar Compra
+            <!-- CUPÓN -->
+            <div class="cupon-seccion">
+                <input type="text" id="input-cupon" placeholder="Código de descuento">
+                <button onclick="aplicarCuponHandler()" class="btn-remove" style="color: var(--color-texto-secundario); font-size: 1.5rem;">
+                    <i class="ph ph-check-circle"></i>
+                </button>
+            </div>
+
+            <div class="linea-resumen total">
+                <span>Total</span>
+                <span id="total-carrito" class="gradient-text">$0</span>
+            </div>
+
+            <button id="boton-comprar" class="btn-premium">
+                Proceder al Pago
             </button>
 
-            <button id="boton-vaciar">
-                Vaciar Carrito
+            <button id="boton-vaciar" class="enlace-explorar" style="background: none; border: none; width: 100%; margin-top: 20px; cursor: pointer;">
+                Limpiar Carrito
             </button>
-
         </aside>
 
     </main>
 
-    <!-- IMPORTANTE -->
+    <!-- SCRIPTS -->
     <script src="../js/data.js"></script>
     <script src="../js/carrito.js"></script>
+    <script>
+        function aplicarCuponHandler() {
+            const input = document.getElementById('input-cupon');
+            const exito = bsCarrito.aplicarCupon(input.value);
+            if(exito) {
+                bsCarrito.notificar("¡Cupón LUMINA20 aplicado con éxito!");
+                input.disabled = true;
+            } else {
+                alert("El código no es válido.");
+            }
+        }
 
+        document.getElementById('boton-comprar').addEventListener('click', () => {
+            alert("Redirigiendo a pasarela de pago segura...");
+        });
+
+        document.getElementById('boton-vaciar').addEventListener('click', () => {
+            if(confirm("¿Seguro que deseas vaciar tu selección?")) {
+                bsCarrito.vaciar();
+            }
+        });
+    </script>
 </body>
 
 </html>
