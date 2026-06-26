@@ -1,299 +1,379 @@
-<!-- Página de inicio principal del e-commerce -->
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="es" data-bs-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LUMINA K-Beauty</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA - BeautyShop Simplified</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --bs-body-bg: #121212;
+            --bs-body-color: #ffffff;
+            --lumina-pink: #FF69B4;
+            --lumina-purple: #D8B4FE;
+            --lumina-peach: #FFCCBC;
+            --gradient-primary: linear-gradient(135deg, var(--lumina-pink), var(--lumina-purple));
+        }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700;800&display=swap"
-    rel="stylesheet">
+        [data-bs-theme="light"] {
+            --bs-body-bg: #f8f9fa;
+            --bs-body-color: #212529;
+            --bs-tertiary-bg: #ffffff;
+        }
 
-  <!-- Icons -->
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+        .gradient-text {
+            background: linear-gradient(90deg, var(--lumina-pink), var(--lumina-purple), var(--lumina-peach));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
 
-  <!-- Estilos -->
-  <link rel="stylesheet" href="css/estilos.css">
-  <link rel="stylesheet" href="css/modo-oscuro.css">
+        .btn-lumina {
+            background: var(--gradient-primary);
+            border: none;
+            color: #121212 !important;
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-lumina:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        .card-lumina {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        [data-bs-theme="light"] .card-lumina {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .card-lumina:hover {
+            transform: translateY(-5px);
+        }
+
+        .nav-link { color: var(--lumina-purple) !important; }
+        .nav-link.active { color: var(--lumina-pink) !important; font-weight: bold; }
+
+        .badge-cart {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 0.7rem;
+        }
+
+        .routine-tab.active {
+            background: var(--gradient-primary) !important;
+            color: #121212 !important;
+        }
+
+        .text-lumina-pink { color: var(--lumina-pink) !important; }
+    </style>
 </head>
-
 <body>
 
-  <div class="contenedor-principal">
-
-    <!-- Barra lateral izquierda -->
-    <aside class="barra-lateral">
-      <div class="logo">
-        <h1 class="logo-nombre gradient-text">BeautyShop</h1>
-        <p class="logo-slogan">MIDNIGHT GLOW</p>
-      </div>
-
-      <nav class="navegacion-lateral">
-        <ul class="lista-navegacion">
-          <li class="opcion-navegacion activa">
-            <a href="javascript:scrollToSection('seccion-destacados')" onclick="activarMenu(0)"><i class="ph ph-squares-four"></i> Catálogo</a>
-          </li>
-          <li class="opcion-navegacion">
-            <a href="javascript:scrollToSection('seccion-nuevos')" onclick="activarMenu(1)"><i class="ph ph-sparkle"></i> Nueva Colección</a>
-          </li>
-          <li class="opcion-navegacion">
-            <a href="javascript:scrollToSection('seccion-ofertas')" onclick="activarMenu(2)"><i class="ph ph-tag"></i> Ofertas</a>
-          </li>
-          <li class="opcion-navegacion">
-            <a href="javascript:scrollToSection('seccion-vendidos')" onclick="activarMenu(3)"><i class="ph ph-trend-up"></i> Más Vendidos</a>
-          </li>
-          <li class="opcion-navegacion">
-            <a href="pages/favoritos.html"><i class="ph ph-heart"></i> Favoritos</a>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="contenedor-toggle-tema">
-        <span class="etiqueta-tema">🌙 Oscuro</span>
-        <button class="boton-tema" id="boton-toggle-tema" aria-label="Cambiar tema claro/oscuro" role="switch"
-          tabindex="0"></button>
-      </div>
-
-      <div class="perfil-lateral">
-        <img
-          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-          alt="Avatar" class="avatar-pequeno">
-        <div class="info-perfil-lateral">
-          <p class="nombre-perfil">Invitada</p>
-          <a href="pages/login.html" class="enlace-perfil">Sign In</a>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Zona principal -->
-    <main class="contenido-principal">
-
-      <!-- Barra superior -->
-      <header class="barra-superior">
-        <div class="contenedor-busqueda oscuro">
-          <i class="ph ph-magnifying-glass"></i>
-          <input type="search" class="campo-busqueda" placeholder="Buscar productos de seda...">
-        </div>
-
-        <div class="acciones-usuario">
-          <button id="boton-toggle-tema" class="boton-toggle-tema" title="Cambiar tema">
-            <span class="etiqueta-tema">🌙 Oscuro</span>
-          </button>
-          <a href="pages/carrito.html" class="icono-bolsa">
-            <i class="ph ph-shopping-bag"></i>
-            <span class="badge-header">2</span>
-          </a>
-          <a href="pages/login.html" class="boton-pill-signin">Sign In</a>
-        </div>
-      </header>
-
-      <!-- Hero Banner -->
-      <section class="seccion-hero midnight">
-        <div class="banner-contenido">
-          <p class="eyebrow-hero">MIDNIGHT SPECIAL EDITION</p>
-          <h2 class="titulo-hero">The Glass Skin <br><span class="ritual-gradient">Ritual</span></h2>
-          <p class="subtitulo-hero">Desbloquea la luminosidad nocturna con nuestra fórmula de bio-fermentos. Una
-            experiencia sensorial que transforma tu piel mientras descansas bajo la luna.</p>
-
-          <div class="acciones-hero">
-            <a href="pages/catalogo.html" class="boton-comprar-ahora">Comprar ahora</a>
-            <div class="linea-separadora"></div>
-            <a href="pages/catalogo.html" class="enlace-explorar">Explorar Colección</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Productos -->
-      <section class="seccion-seleccion-curada" id="seccion-destacados">
-        <div class="encabezado-seccion">
-          <div>
-            <p class="subtitulo-seccion">ETHEREAL ESSENTIALS</p>
-            <h2 class="titulo-seccion">Selección Curada</h2>
-          </div>
-          <a href="pages/catalogo.html" class="enlace-ver-todo">Ver todo</a>
-        </div>
-
-        <div class="fila-productos">
-          <!-- Se llenarán con JavaScript desde main.js -->
-        </div>
-      </section>
-
-      <!-- NUEVA COLECCIÓN -->
-      <section class="seccion-nuevos" id="seccion-nuevos">
-        <div class="encabezado-seccion">
-          <div>
-            <p class="subtitulo-seccion">NOVEDADES</p>
-            <h2 class="titulo-seccion">Nueva Colección</h2>
-          </div>
-          <a href="pages/catalogo.html" class="enlace-ver-todo">Ver todo</a>
-        </div>
-
-        <div class="fila-productos" id="grid-nuevos">
-          <!-- Se llenarán con JavaScript desde main.js -->
-        </div>
-      </section>
-
-      <!-- OFERTAS -->
-      <section class="seccion-ofertas" id="seccion-ofertas">
-        <div class="encabezado-ofertas">
-          <span class="badge-seccion"><i class="ph-fill ph-tag"></i> PROMOCIONES</span>
-          <h2 class="titulo-grande">Ofertas Especiales</h2>
-          <div class="linea-decorativa"></div>
-          <p class="descripcion-seccion">No te pierdas nuestras mejores promociones del mes</p>
-        </div>
-
-        <div class="grid-ofertas">
-          <!-- Se llenarán con JavaScript desde main.js -->
-        </div>
-      </section>
-
-      <!-- ===== PRODUCTOS MÁS VENDIDOS ===== -->
-      <section class="seccion-mas-vendidos" id="seccion-vendidos">
-        <div class="encabezado-vendidos">
-          <span class="badge-seccion"><i class="ph-fill ph-star"></i> MÁS VENDIDOS</span>
-          <h2 class="titulo-grande">Productos Destacados</h2>
-          <div class="linea-decorativa"></div>
-          <p class="descripcion-seccion">Nuestros productos más queridos, seleccionados por expertos en belleza</p>
-        </div>
-
-        <div class="grid-mas-vendidos">
-          <!-- Se llenarán con JavaScript desde main.js -->
-        </div>
-      </section>
-
-      <!-- ===== RUTINA RECOMENDADA ===== -->
-      <section class="seccion-rutina">
-        <div class="rutina-contenido">
-          <span class="badge-seccion"><i class="ph-fill ph-flower-tulip"></i> PASO A PASO</span>
-          <h2 class="titulo-grande">Tu Rutina Recomendada</h2>
-          <p class="descripcion-seccion">Adapta tu cuidado según las necesidades de tu piel en cada momento del día.</p>
-
-          <div class="tabs-rutina">
-            <button class="tab-rutina activo" id="tab-dia" onclick="mostrarRutina('dia')">
-              ☀️ Rutina de Día
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top border-bottom border-secondary bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand d-flex flex-column" href="#">
+                <span class="gradient-text h3 mb-0">BeautyShop</span>
+                <small class="text-secondary" style="font-size: 0.6rem; letter-spacing: 2px;">MIDNIGHT GLOW</small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <button class="tab-rutina" id="tab-noche" onclick="mostrarRutina('noche')">
-              🌙 Rutina de Noche
-            </button>
-          </div>
-
-          <div class="pasos-rutina" id="rutina-dia">
-            <div class="paso-rutina">
-              <span class="numero-paso">1</span>
-              <div>
-                <h4>Limpiador suave</h4>
-                <p>Retira impurezas sin resecar</p>
-              </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#catalog" data-t="catalogo">Catálogo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#routine" data-t="rutina">Rutina</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#entrepreneur" data-t="emprende">Emprende</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-outline-secondary btn-sm" id="theme-toggle">
+                        <i class="ph ph-moon"></i>
+                    </button>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="ph ph-translate"></i>
+                        </button>
+                        <ul class="dropdown-menu shadow">
+                            <li><a class="dropdown-item" href="#" onclick="changeLanguage('es')">Español</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">English</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                        <i class="ph ph-shopping-bag h4 mb-0 text-lumina-pink"></i>
+                        <span class="badge rounded-pill bg-danger badge-cart" id="cart-count">0</span>
+                    </button>
+                    <button class="btn btn-lumina btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal" data-t="login">Sign In</button>
+                </div>
             </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">2</span>
-              <div>
-                <h4>Tónico hidratante</h4>
-                <p>Equilibra el pH de tu piel</p>
-              </div>
-            </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">3</span>
-              <div>
-                <h4>Sérum Vitamina C</h4>
-                <p>Ilumina y protege de radicales libres</p>
-              </div>
-            </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">4</span>
-              <div>
-                <h4>Crema hidratante + SPF</h4>
-                <p>Hidratación y protección solar</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="pasos-rutina oculto" id="rutina-noche">
-            <div class="paso-rutina">
-              <span class="numero-paso">1</span>
-              <div>
-                <h4>Aceite desmaquillante</h4>
-                <p>Disuelve maquillaje y SPF</p>
-              </div>
-            </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">2</span>
-              <div>
-                <h4>Limpiador de espuma</h4>
-                <p>Doble limpieza para piel perfecta</p>
-              </div>
-            </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">3</span>
-              <div>
-                <h4>Sérum Retinol B5</h4>
-                <p>Renovación celular nocturna</p>
-              </div>
-            </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">4</span>
-              <div>
-                <h4>Crema de noche nutritiva</h4>
-                <p>Regenera mientras descansas</p>
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
+    </nav>
 
-      <!-- ===== EMPRENDE CON NOSOTROS ===== -->
-      <section class="seccion-emprende">
-        <div class="emprende-imagen">
-          <img
-            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80"
-            alt="Emprendedora">
+    <!-- Hero -->
+    <header class="py-5 position-relative overflow-hidden bg-body">
+        <div class="container py-5 text-center position-relative" style="z-index: 1;">
+            <p class="text-lumina-pink fw-bold mb-2">MIDNIGHT SPECIAL EDITION</p>
+            <h1 class="display-3 fw-bold mb-4">The Glass Skin <span class="gradient-text">Ritual</span></h1>
+            <p class="lead text-secondary mx-auto mb-5" style="max-width: 700px;">Desbloquea la luminosidad nocturna con nuestra fórmula de bio-fermentos. Una experiencia sensorial que transforma tu piel.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#catalog" class="btn btn-lumina btn-lg" data-t="comprar_ahora">Comprar ahora</a>
+                <a href="#" class="btn btn-outline-secondary btn-lg rounded-pill" data-t="explorar">Explorar</a>
+            </div>
         </div>
-        <div class="emprende-contenido">
-          <span class="badge-seccion"><i class="ph-fill ph-rocket"></i> OPORTUNIDAD</span>
-          <h2 class="titulo-grande">Emprende con <span class="ritual-gradient">LUMINA</span></h2>
-          <p class="descripcion-seccion">Únete a nuestra red exclusiva de embajadoras. Construye tu propio negocio de
-            belleza, recibe capacitación continua y genera ingresos compartiendo los productos que amas.</p>
+    </header>
 
-          <ul class="lista-beneficios">
-            <li><span class="emoji-bullet">✨</span> Comisiones atractivas</li>
-            <li><span class="emoji-bullet">🎁</span> Descuentos exclusivos en productos</li>
-            <li><span class="emoji-bullet">📚</span> Capacitación en ventas y skincare</li>
-          </ul>
-
-          <a href="pages/publicar.html" class="boton-emprender">Quiero Emprender</a>
+    <!-- Catalog -->
+    <section id="catalog" class="container py-5">
+        <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+            <div>
+                <p class="text-lumina-pink mb-0" data-t="destacados">ETHEREAL ESSENTIALS</p>
+                <h2 class="fw-bold" data-t="seleccion_curada">Selección Curada</h2>
+            </div>
+            <div class="input-group w-auto">
+                <span class="input-group-text bg-transparent border-secondary text-secondary"><i class="ph ph-magnifying-glass"></i></span>
+                <input type="text" class="form-control bg-transparent border-secondary" placeholder="Buscar..." data-t-placeholder="buscar_placeholder">
+            </div>
         </div>
-      </section>
+        <div class="row g-4 mb-5" id="product-grid">
+            <!-- Products injected here -->
+        </div>
 
-    </main>
+        <!-- Best Sellers -->
+        <div class="pt-5 border-top border-secondary">
+            <div class="text-center mb-5">
+                <span class="badge rounded-pill border border-lumina-pink text-lumina-pink px-3 py-2 mb-3"><i class="ph ph-star"></i> MÁS VENDIDOS</span>
+                <h2 class="display-6 fw-bold" data-t="mas_vendidos">Productos Destacados</h2>
+            </div>
+            <div class="row g-4" id="best-sellers-grid">
+                <!-- Best sellers injected here -->
+            </div>
+        </div>
+    </section>
 
-    <!-- Floating Cart -->
-    <a href="pages/carrito.html" class="carrito-flotante">
-      <i class="ph ph-shopping-cart"></i>
-      <span class="badge-carrito">2</span>
-    </a>
+    <!-- Routine -->
+    <section id="routine" class="py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge rounded-pill border border-lumina-pink text-lumina-pink px-3 py-2 mb-3"><i class="ph ph-flower-tulip"></i> PASO A PASO</span>
+                <h2 class="display-5 fw-bold" data-t="tu_rutina">Tu Rutina Recomendada</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <ul class="nav nav-pills mb-4 justify-content-center gap-2" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active routine-tab rounded-pill px-4 border border-secondary" id="pills-day-tab" data-bs-toggle="pill" data-bs-target="#pills-day" data-t="dia">☀️ Día</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link routine-tab rounded-pill px-4 border border-secondary" id="pills-night-tab" data-bs-toggle="pill" data-bs-target="#pills-night" data-t="noche">🌙 Noche</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-day">
+                            <div class="list-group list-group-flush border-0">
+                                <div class="list-group-item bg-transparent border-secondary d-flex gap-3 align-items-center py-3">
+                                    <span class="h4 mb-0 text-lumina-pink">1</span>
+                                    <div><h5 class="mb-0" data-t="paso1_dia_titulo">Limpiador suave</h5><p class="mb-0 text-secondary" data-t="paso1_dia_desc">Retira impurezas sin resecar</p></div>
+                                </div>
+                                <div class="list-group-item bg-transparent border-secondary d-flex gap-3 align-items-center py-3">
+                                    <span class="h4 mb-0 text-lumina-pink">2</span>
+                                    <div><h5 class="mb-0" data-t="paso2_dia_titulo">Tónico hidratante</h5><p class="mb-0 text-secondary" data-t="paso2_dia_desc">Equilibra el pH de tu piel</p></div>
+                                </div>
+                                <div class="list-group-item bg-transparent border-secondary d-flex gap-3 align-items-center py-3">
+                                    <span class="h4 mb-0 text-lumina-pink">3</span>
+                                    <div><h5 class="mb-0" data-t="paso3_dia_titulo">Sérum Vitamina C</h5><p class="mb-0 text-secondary" data-t="paso3_dia_desc">Ilumina y protege de radicales libres</p></div>
+                                </div>
+                                <div class="list-group-item bg-transparent border-secondary d-flex gap-3 align-items-center py-3">
+                                    <span class="h4 mb-0 text-lumina-pink">4</span>
+                                    <div><h5 class="mb-0" data-t="paso4_dia_titulo">Crema hidratante + SPF</h5><p class="mb-0 text-secondary" data-t="paso4_dia_desc">Hidratación y protección solar</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-night">
+                            <div class="list-group list-group-flush border-0">
+                                <div class="list-group-item bg-transparent border-secondary d-flex gap-3 align-items-center py-3">
+                                    <span class="h4 mb-0 text-lumina-pink">1</span>
+                                    <div><h5 class="mb-0" data-t="paso1_noche_titulo">Aceite desmaquillante</h5><p class="mb-0 text-secondary" data-t="paso1_noche_desc">Disuelve maquillaje y SPF</p></div>
+                                </div>
+                                <div class="list-group-item bg-transparent border-secondary d-flex gap-3 align-items-center py-3">
+                                    <span class="h4 mb-0 text-lumina-pink">2</span>
+                                    <div><h5 class="mb-0" data-t="paso2_noche_titulo">Limpiador de espuma</h5><p class="mb-0 text-secondary" data-t="paso2_noche_desc">Doble limpieza para piel perfecta</p></div>
+                                </div>
+                                <div class="list-group-item bg-transparent border-secondary d-flex gap-3 align-items-center py-3">
+                                    <span class="h4 mb-0 text-lumina-pink">3</span>
+                                    <div><h5 class="mb-0" data-t="paso3_noche_titulo">Sérum Retinol B5</h5><p class="mb-0 text-secondary" data-t="paso3_noche_desc">Renovación celular nocturna</p></div>
+                                </div>
+                                <div class="list-group-item bg-transparent border-secondary d-flex gap-3 align-items-center py-3">
+                                    <span class="h4 mb-0 text-lumina-pink">4</span>
+                                    <div><h5 class="mb-0" data-t="paso4_noche_titulo">Crema de noche nutritiva</h5><p class="mb-0 text-secondary" data-t="paso4_noche_desc">Regenera mientras descansas</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  </div>
+    <!-- Entrepreneur -->
+    <section id="entrepreneur" class="container py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" class="img-fluid rounded-4 shadow-lg" alt="Entrepreneur">
+            </div>
+            <div class="col-lg-6">
+                <span class="text-lumina-pink fw-bold"><i class="ph ph-rocket"></i> OPORTUNIDAD</span>
+                <h2 class="display-5 fw-bold my-3">Emprende con <span class="gradient-text">LUMINA</span></h2>
+                <p class="lead text-secondary mb-4" data-t="emprende_desc">Únete a nuestra red exclusiva de embajadoras. Construye tu propio negocio de belleza, recibe capacitación continua y genera ingresos.</p>
+                <ul class="list-unstyled mb-4">
+                    <li class="mb-2"><i class="ph ph-check-circle text-lumina-pink me-2"></i> <span data-t="comisiones">Comisiones atractivas</span></li>
+                    <li class="mb-2"><i class="ph ph-check-circle text-lumina-pink me-2"></i> <span data-t="descuentos_excl">Descuentos exclusivos</span></li>
+                    <li class="mb-2"><i class="ph ph-check-circle text-lumina-pink me-2"></i> <span data-t="capacitacion">Capacitación continua</span></li>
+                </ul>
+                <button class="btn btn-lumina btn-lg" data-bs-toggle="modal" data-bs-target="#entrepreneurModal" data-t="quiero_emprender">Quiero Emprender</button>
+            </div>
+        </div>
+    </section>
 
-  <script src="js/modo-oscuro.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/carrito.js"></script>
-  <script src="js/modo-oscuro.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-    function mostrarRutina(tipo) {
-      document.getElementById('rutina-dia').classList.add('oculto');
-      document.getElementById('rutina-noche').classList.add('oculto');
-      document.getElementById('tab-dia').classList.remove('activo');
-      document.getElementById('tab-noche').classList.remove('activo');
-      document.getElementById('rutina-' + tipo).classList.remove('oculto');
-      document.getElementById('tab-' + tipo).classList.add('activo');
-    }
-  </script>
+    <!-- Footer -->
+    <footer class="py-5 border-top border-secondary bg-body-tertiary">
+        <div class="container text-center">
+            <h3 class="gradient-text mb-4">BeautyShop</h3>
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <a href="#" class="text-secondary h4"><i class="ph ph-instagram-logo"></i></a>
+                <a href="#" class="text-secondary h4"><i class="ph ph-facebook-logo"></i></a>
+                <a href="#" class="text-secondary h4"><i class="ph ph-tiktok-logo"></i></a>
+            </div>
+            <p class="text-secondary small">&copy; 2024 BeautyShop - Midnight Glow. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title" data-t="tu_carrito">Tu Carrito</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="cart-items" class="mb-4">
+                <!-- Cart items injected here -->
+            </div>
+            <div class="border-top border-secondary pt-3">
+                <div class="input-group input-group-sm mb-3">
+                    <input type="text" id="coupon-input" class="form-control bg-transparent border-secondary" placeholder="Cupón (LUMINA20)" data-t-placeholder="cupon_placeholder">
+                    <button class="btn btn-outline-secondary" type="button" id="apply-coupon" data-t="aplicar">Aplicar</button>
+                </div>
+                <div class="d-flex justify-content-between mb-1 small">
+                    <span class="text-secondary" data-t="subtotal">Subtotal</span>
+                    <span id="cart-subtotal">$0</span>
+                </div>
+                <div id="discount-row" class="d-flex justify-content-between mb-1 small d-none">
+                    <span class="text-success" data-t="descuento">Descuento</span>
+                    <span id="cart-discount" class="text-success">-$0</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="fw-bold" data-t="total">Total</span>
+                    <span id="cart-total" class="fw-bold text-lumina-pink">$0</span>
+                </div>
+                <button class="btn btn-lumina w-100 mb-2" data-t="pagar">Pagar ahora</button>
+                <button class="btn btn-outline-secondary w-100" id="empty-cart" data-t="vaciar">Vaciar carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-body border-secondary">
+                <div class="modal-body p-4">
+                    <div class="text-center mb-4">
+                        <h2 class="gradient-text">LUMINA</h2>
+                        <p class="text-secondary" data-t="bienvenido">Bienvenido de nuevo</p>
+                    </div>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary" data-t="correo">Correo</label>
+                            <input type="email" class="form-control bg-transparent border-secondary" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-secondary" data-t="contrasena">Contraseña</label>
+                            <input type="password" class="form-control bg-transparent border-secondary" required>
+                        </div>
+                        <button type="submit" class="btn btn-lumina w-100 py-3" data-t="ingresar">Ingresar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-body border-secondary">
+                <div class="modal-body p-0">
+                    <button type="button" class="btn-close position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal"></button>
+                    <div class="row g-0" id="product-detail-content">
+                        <!-- Dynamic Content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Entrepreneur Modal -->
+    <div class="modal fade" id="entrepreneurModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-body border-secondary">
+                <div class="modal-body p-4">
+                    <div class="text-center mb-4">
+                        <h2 class="gradient-text" data-t="emprende_titulo">Emprende con LUMINA</h2>
+                        <p class="text-secondary" data-t="emprende_sub">Únete a nuestra red de embajadoras</p>
+                    </div>
+                    <form id="entrepreneurForm">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary" data-t="nombre">Nombre Completo</label>
+                            <input type="text" class="form-control bg-transparent border-secondary" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary" data-t="correo">Correo</label>
+                            <input type="email" class="form-control bg-transparent border-secondary" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-secondary" data-t="ciudad">Ciudad</label>
+                            <input type="text" class="form-control bg-transparent border-secondary" required>
+                        </div>
+                        <button type="submit" class="btn btn-lumina w-100 py-3" data-t="enviar_solicitud">Enviar Solicitud</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast align-items-center text-white bg-dark border-secondary" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
 </body>
-
 </html>
