@@ -9,6 +9,25 @@ let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 document.addEventListener("DOMContentLoaded", function() {
   console.log("Sitio cargado. Inicializando...");
   
+  // Optimización de Scroll: Throttle para el navbar u otros efectos
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const now = Date.now();
+    if (now - lastScroll < 16) return; // ~60fps throttle
+    lastScroll = now;
+
+    const header = document.querySelector('.barra-superior');
+    if (header) {
+      if (window.scrollY > 50) {
+        header.style.backdropFilter = 'blur(20px)';
+        header.style.background = 'rgba(18, 18, 18, 0.8)';
+      } else {
+        header.style.backdropFilter = 'none';
+        header.style.background = 'transparent';
+      }
+    }
+  }, { passive: true });
+
   // 1. Mostrar los productos destacados en el inicio
   mostrarProductosDestacados();
   
@@ -100,17 +119,37 @@ function mostrarProductosMasVendidos() {
 }
 
 /**
+ * Normaliza la ruta de la imagen según la ubicación actual
+ */
+function normalizarRutaImagen(ruta) {
+  if (!ruta) return "";
+  if (ruta.startsWith('http')) return ruta;
+
+  const isInsidePages = window.location.pathname.includes('/pages/');
+  if (isInsidePages && !ruta.startsWith('../')) {
+    return '../' + ruta;
+  }
+  return ruta;
+}
+
+/**
  * Crea el HTML de una tarjeta de producto estándar
  */
 function crearTarjetaProducto(producto) {
   const precioFormateado = formatearPrecio(producto.precio);
   let etiquetaHTML = obtenerEtiqueta(producto);
   const esFavorito = favoritos.includes(producto.id);
+  const imagenUrl = normalizarRutaImagen(producto.imagen);
   
   return `
     <article class="tarjeta-producto" onclick="irADetalleProducto(${producto.id})">
       <div class="contenedor-imagen-producto">
-        <img src="${producto.imagen}" alt="${producto.nombre}" class="imagen-producto">
+        <img src="${imagenUrl}"
+             alt="${producto.nombre}"
+             class="imagen-producto"
+             loading="lazy"
+             onerror="handleImgError(this)"
+             onload="handleImgLoad(this)">
         ${etiquetaHTML}
         <button class="btn-favorito ${esFavorito ? 'activo' : ''}" 
                 onclick="toggleFavorito(event, ${producto.id})" 
@@ -143,11 +182,16 @@ function crearTarjetaOferta(producto) {
   const precioFormateadoOriginal = formatearPrecio(precioOriginal);
   const precioFormateadoDescuento = formatearPrecio(precioConDescuento);
   const esFavorito = favoritos.includes(producto.id);
+  const imagenUrl = normalizarRutaImagen(producto.imagen);
   
   return `
     <article class="tarjeta-oferta" onclick="irADetalleProducto(${producto.id})">
       <div class="imagen-oferta">
-        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <img src="${imagenUrl}"
+             alt="${producto.nombre}"
+             loading="lazy"
+             onerror="handleImgError(this)"
+             onload="handleImgLoad(this)">
         <span class="badge-descuento">-${producto.descuento}%</span>
         <button class="btn-favorito-oferta ${esFavorito ? 'activo' : ''}" 
                 onclick="toggleFavorito(event, ${producto.id})">
@@ -175,11 +219,16 @@ function crearTarjetaOferta(producto) {
 function crearTarjetaVendida(producto) {
   const precioFormateado = formatearPrecio(producto.precio);
   const esFavorito = favoritos.includes(producto.id);
+  const imagenUrl = normalizarRutaImagen(producto.imagen);
   
   return `
     <article class="tarjeta-vendido" onclick="irADetalleProducto(${producto.id})">
       <div class="imagen-vendido">
-        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <img src="${imagenUrl}"
+             alt="${producto.nombre}"
+             loading="lazy"
+             onerror="handleImgError(this)"
+             onload="handleImgLoad(this)">
         <button class="btn-favorito-vendido ${esFavorito ? 'activo' : ''}" 
                 onclick="toggleFavorito(event, ${producto.id})">
           <i class="ph ${esFavorito ? 'ph-heart-fill' : 'ph-heart'}"></i>
@@ -240,7 +289,9 @@ function obtenerNombreCategoria(idCategoria) {
  * Navega a la página de detalle del producto
  */
 function irADetalleProducto(productoId) {
-  window.location.href = `pages/publicacion.html?id=${productoId}`;
+  const isInsidePages = window.location.pathname.includes('/pages/');
+  const prefix = isInsidePages ? '' : 'pages/';
+  window.location.href = `${prefix}publicacion.html?id=${productoId}`;
 }
 
 /**
@@ -252,16 +303,34 @@ function toggleFavorito(event, productoId) {
   const indice = favoritos.indexOf(productoId);
   if (indice > -1) {
     favoritos.splice(indice, 1);
+    mostrarNotificacion("Eliminado de favoritos");
   } else {
     favoritos.push(productoId);
+    mostrarNotificacion("Agregado a favoritos ❤️");
   }
   
   localStorage.setItem('favoritos', JSON.stringify(favoritos));
   
+  // Actualizar UI
+  actualizarUIFavoritos();
+
   // Recargar las secciones para actualizar botones de favorito
   mostrarProductosDestacados();
   mostrarProductosConOfertas();
   mostrarProductosMasVendidos();
+
+  // Si existe en catalogo.js, sincronizar badges
+  if (typeof actualizarBadgesNav === 'function') {
+    actualizarBadgesNav();
+  }
+}
+
+function actualizarUIFavoritos() {
+    const badgeFavs = document.querySelector('.badge-favs');
+    if (badgeFavs) {
+        badgeFavs.textContent = favoritos.length;
+        badgeFavs.style.display = favoritos.length > 0 ? 'flex' : 'none';
+    }
 }
 
 /**
@@ -281,28 +350,26 @@ function configurarFavoritos() {
  * Agrega un producto al carrito
  */
 function agregarAlCarrito(event, productoId) {
-  event.stopPropagation();
+  if (event) event.stopPropagation();
   
-  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  let key = "beautyshop-carrito";
+  let carrito = JSON.parse(localStorage.getItem(key)) || [];
   const producto = productos.find(p => p.id === productoId);
   
   if (!producto) return;
   
-  const itemExistente = carrito.find(item => item.id === productoId);
+  const itemExistente = carrito.find(item => item.productoId === productoId);
   
   if (itemExistente) {
     itemExistente.cantidad += 1;
   } else {
     carrito.push({
-      id: producto.id,
-      nombre: producto.nombre,
-      precio: producto.precio,
-      imagen: producto.imagen,
+      productoId: producto.id,
       cantidad: 1
     });
   }
   
-  localStorage.setItem('carrito', JSON.stringify(carrito));
+  localStorage.setItem(key, JSON.stringify(carrito));
   actualizarContadorCarrito();
   
   // Mostrar notificación
@@ -313,7 +380,7 @@ function agregarAlCarrito(event, productoId) {
  * Actualiza el contador del carrito
  */
 function actualizarContadorCarrito() {
-  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  const carrito = JSON.parse(localStorage.getItem('beautyshop-carrito')) || [];
   const contador = carrito.reduce((total, item) => total + item.cantidad, 0);
   
   const badgeCarrito = document.querySelector('.badge-header');
@@ -321,6 +388,19 @@ function actualizarContadorCarrito() {
     badgeCarrito.textContent = contador;
     badgeCarrito.style.display = contador > 0 ? 'inline' : 'none';
   }
+}
+
+/**
+ * Global Image Handlers for Performance & UX
+ */
+function handleImgError(img) {
+  img.classList.add('img-error');
+  // Fallback to a placeholder that fits the luxury theme
+  img.src = normalizarRutaImagen("assets/products/placeholder.jpg");
+}
+
+function handleImgLoad(img) {
+  img.classList.add('loaded');
 }
 
 /**

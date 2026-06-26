@@ -5,7 +5,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LUMINA K-Beauty</title>
+  <title>LUMINA K-Beauty | Glass Skin Rituals & Premium Skincare</title>
+  <meta name="description" content="Descubre el secreto de la Glass Skin con LUMINA. Productos premium de K-Beauty, rutinas personalizadas y las mejores marcas coreanas en un solo lugar.">
+  <meta name="keywords" content="skincare, k-beauty, maquillaje, belleza coreana, glass skin, lumina shop">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="LUMINA K-Beauty | Rituals de Belleza Premium">
+  <meta property="og:description" content="Eleva tu rutina con nuestra selección curada de cosmética coreana.">
+  <meta property="og:image" content="assets/images/og-banner.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LUMINA K-Beauty">
+  <meta name="twitter:description" content="Expertos en el ritual Glass Skin.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,7 +75,7 @@
       <div class="perfil-lateral">
         <img
           src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-          alt="Avatar" class="avatar-pequeno">
+          alt="Avatar" class="avatar-pequeno" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
         <div class="info-perfil-lateral">
           <p class="nombre-perfil">Invitada</p>
           <a href="pages/login.html" class="enlace-perfil">Sign In</a>
@@ -76,16 +89,16 @@
       <!-- Barra superior -->
       <header class="barra-superior">
         <div class="contenedor-busqueda oscuro">
-          <i class="ph ph-magnifying-glass"></i>
-          <input type="search" class="campo-busqueda" placeholder="Buscar productos de seda...">
+          <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" class="campo-busqueda" placeholder="Buscar productos de seda..." aria-label="Buscar productos">
         </div>
 
         <div class="acciones-usuario">
-          <button id="boton-toggle-tema" class="boton-toggle-tema" title="Cambiar tema">
+          <button id="boton-toggle-tema-header" class="boton-toggle-tema" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro">
             <span class="etiqueta-tema">🌙 Oscuro</span>
           </button>
-          <a href="pages/carrito.html" class="icono-bolsa">
-            <i class="ph ph-shopping-bag"></i>
+          <a href="pages/carrito.html" class="icono-bolsa" aria-label="Ver carrito">
+            <i class="ph ph-shopping-bag" aria-hidden="true"></i>
             <span class="badge-header">2</span>
           </a>
           <a href="pages/login.html" class="boton-pill-signin">Sign In</a>
@@ -167,80 +180,140 @@
       </section>
 
       <!-- ===== RUTINA RECOMENDADA ===== -->
-      <section class="seccion-rutina">
-        <div class="rutina-contenido">
-          <span class="badge-seccion"><i class="ph-fill ph-flower-tulip"></i> PASO A PASO</span>
-          <h2 class="titulo-grande">Tu Rutina Recomendada</h2>
-          <p class="descripcion-seccion">Adapta tu cuidado según las necesidades de tu piel en cada momento del día.</p>
+      <section class="seccion-rutina-premium" id="seccion-rutina">
+        <div class="rutina-header">
+          <span class="badge-seccion"><i class="ph-fill ph-sparkle"></i> GUÍA DE BELLEZA</span>
+          <h2 class="titulo-grande">Rituales Glass Skin</h2>
+          <p class="descripcion-seccion">Diseñados para transformar tu piel paso a paso.</p>
 
-          <div class="tabs-rutina">
-            <button class="tab-rutina activo" id="tab-dia" onclick="mostrarRutina('dia')">
-              ☀️ Rutina de Día
+          <div class="tabs-rutina-premium">
+            <button class="tab-premium activa" id="tab-dia-btn" onclick="mostrarRutinaPremium('dia')">
+              <i class="ph ph-sun"></i> Día
             </button>
-            <button class="tab-rutina" id="tab-noche" onclick="mostrarRutina('noche')">
-              🌙 Rutina de Noche
+            <button class="tab-premium" id="tab-noche-btn" onclick="mostrarRutinaPremium('noche')">
+              <i class="ph ph-moon"></i> Noche
             </button>
           </div>
+        </div>
 
-          <div class="pasos-rutina" id="rutina-dia">
-            <div class="paso-rutina">
-              <span class="numero-paso">1</span>
-              <div>
-                <h4>Limpiador suave</h4>
-                <p>Retira impurezas sin resecar</p>
-              </div>
-            </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">2</span>
-              <div>
-                <h4>Tónico hidratante</h4>
-                <p>Equilibra el pH de tu piel</p>
-              </div>
-            </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">3</span>
-              <div>
-                <h4>Sérum Vitamina C</h4>
-                <p>Ilumina y protege de radicales libres</p>
-              </div>
-            </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">4</span>
-              <div>
-                <h4>Crema hidratante + SPF</h4>
-                <p>Hidratación y protección solar</p>
-              </div>
+        <div class="rutina-grid" id="rutina-premium-dia">
+          <div class="rutina-visual">
+            <img src="https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=800&q=80" alt="Rutina Día" class="img-rutina-principal" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
+            <div class="rutina-stats">
+              <div class="stat"><i class="ph ph-clock"></i> 10 min</div>
+              <div class="stat"><i class="ph ph-drop"></i> Todo tipo de piel</div>
             </div>
           </div>
 
-          <div class="pasos-rutina oculto" id="rutina-noche">
-            <div class="paso-rutina">
-              <span class="numero-paso">1</span>
-              <div>
-                <h4>Aceite desmaquillante</h4>
-                <p>Disuelve maquillaje y SPF</p>
+          <div class="rutina-detalles">
+            <div class="pasos-container">
+              <div class="paso-item" onclick="irADetalleProducto(166)">
+                <div class="paso-numero">01</div>
+                <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=100&q=80" alt="Paso 1" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
+                <div class="paso-info">
+                  <h4>Limpieza Profunda</h4>
+                  <p>Inicia con el Limpiador Pure Zen para refrescar.</p>
+                </div>
+              </div>
+              <div class="paso-item" onclick="irADetalleProducto(181)">
+                <div class="paso-numero">02</div>
+                <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&w=100&q=80" alt="Paso 2" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
+                <div class="paso-info">
+                  <h4>Tonificación</h4>
+                  <p>Equilibra con el Tónico Lumina para preparar.</p>
+                </div>
+              </div>
+              <div class="paso-item" onclick="irADetalleProducto(121)">
+                <div class="paso-numero">03</div>
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=100&q=80" alt="Paso 3" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
+                <div class="paso-info">
+                  <h4>Sérum Iluminador</h4>
+                  <p>Aplica Glow Essence para un brillo natural.</p>
+                </div>
+              </div>
+              <div class="paso-item" onclick="irADetalleProducto(151)">
+                <div class="paso-numero">04</div>
+                <img src="https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=100&q=80" alt="Paso 4" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
+                <div class="paso-info">
+                  <h4>Protección UV</h4>
+                  <p>Escudo esencial con Protector Solar Pure Zen.</p>
+                </div>
               </div>
             </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">2</span>
-              <div>
-                <h4>Limpiador de espuma</h4>
-                <p>Doble limpieza para piel perfecta</p>
+
+            <div class="rutina-beneficios">
+              <h5>Beneficios</h5>
+              <ul>
+                <li><i class="ph ph-check-circle"></i> Hidratación 24h</li>
+                <li><i class="ph ph-check-circle"></i> Protección contra polución</li>
+                <li><i class="ph ph-check-circle"></i> Efecto Glass Skin</li>
+              </ul>
+            </div>
+
+            <div class="rutina-acciones">
+              <button class="btn-comprar-rutina" onclick="comprarRutinaCompleta([166, 181, 121, 151])">Comprar Rutina Completa</button>
+              <button class="btn-secundario-rutina" onclick="agregarRutinaAlCarrito([166, 181, 121, 151])">Agregar al Carrito</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rutina-grid oculto" id="rutina-premium-noche">
+          <div class="rutina-visual">
+            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80" alt="Rutina Noche" class="img-rutina-principal" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
+            <div class="rutina-stats">
+              <div class="stat"><i class="ph ph-clock"></i> 15 min</div>
+              <div class="stat"><i class="ph ph-moon"></i> Reparación Nocturna</div>
+            </div>
+          </div>
+
+          <div class="rutina-detalles">
+            <div class="pasos-container">
+              <div class="paso-item" onclick="irADetalleProducto(168)">
+                <div class="paso-numero">01</div>
+                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=100&q=80" alt="Paso 1" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
+                <div class="paso-info">
+                  <h4>Limpiador Nocturno</h4>
+                  <p>Remueve impurezas con Midnight Bloom.</p>
+                </div>
+              </div>
+              <div class="paso-item" onclick="irADetalleProducto(183)">
+                <div class="paso-numero">02</div>
+                <img src="https://images.unsplash.com/photo-1570172236625-f3747f551b9d?auto=format&fit=crop&w=100&q=80" alt="Paso 2" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
+                <div class="paso-info">
+                  <h4>Tónico Reparador</h4>
+                  <p>Calma y restaura con Velvet Touch.</p>
+                </div>
+              </div>
+              <div class="paso-item" onclick="irADetalleProducto(123)">
+                <div class="paso-numero">03</div>
+                <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&w=100&q=80" alt="Paso 3" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
+                <div class="paso-info">
+                  <h4>Sérum Recuperador</h4>
+                  <p>Ocean Mist para regeneración celular.</p>
+                </div>
+              </div>
+              <div class="paso-item" onclick="irADetalleProducto(197)">
+                <div class="paso-numero">04</div>
+                <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=100&q=80" alt="Paso 4" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
+                <div class="paso-info">
+                  <h4>Mascarilla Intensiva</h4>
+                  <p>Nutrición profunda con Pure Zen Mask.</p>
+                </div>
               </div>
             </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">3</span>
-              <div>
-                <h4>Sérum Retinol B5</h4>
-                <p>Renovación celular nocturna</p>
-              </div>
+
+            <div class="rutina-beneficios">
+              <h5>Beneficios</h5>
+              <ul>
+                <li><i class="ph ph-check-circle"></i> Reparación profunda</li>
+                <li><i class="ph ph-check-circle"></i> Minimiza poros</li>
+                <li><i class="ph ph-check-circle"></i> Piel descansada</li>
+              </ul>
             </div>
-            <div class="paso-rutina">
-              <span class="numero-paso">4</span>
-              <div>
-                <h4>Crema de noche nutritiva</h4>
-                <p>Regenera mientras descansas</p>
-              </div>
+
+            <div class="rutina-acciones">
+              <button class="btn-comprar-rutina" onclick="comprarRutinaCompleta([168, 183, 123, 197])">Comprar Rutina Completa</button>
+              <button class="btn-secundario-rutina" onclick="agregarRutinaAlCarrito([168, 183, 123, 197])">Agregar al Carrito</button>
             </div>
           </div>
         </div>
@@ -251,7 +324,7 @@
         <div class="emprende-imagen">
           <img
             src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80"
-            alt="Emprendedora">
+            alt="Emprendedora" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
         </div>
         <div class="emprende-contenido">
           <span class="badge-seccion"><i class="ph-fill ph-rocket"></i> OPORTUNIDAD</span>
@@ -285,13 +358,26 @@
   <script src="js/modo-oscuro.js"></script>
   <script src="js/main.js"></script>
   <script>
-    function mostrarRutina(tipo) {
-      document.getElementById('rutina-dia').classList.add('oculto');
-      document.getElementById('rutina-noche').classList.add('oculto');
-      document.getElementById('tab-dia').classList.remove('activo');
-      document.getElementById('tab-noche').classList.remove('activo');
-      document.getElementById('rutina-' + tipo).classList.remove('oculto');
-      document.getElementById('tab-' + tipo).classList.add('activo');
+    function mostrarRutinaPremium(tipo) {
+      document.getElementById('rutina-premium-dia').classList.add('oculto');
+      document.getElementById('rutina-premium-noche').classList.add('oculto');
+      document.getElementById('tab-dia-btn').classList.remove('activa');
+      document.getElementById('tab-noche-btn').classList.remove('activa');
+
+      document.getElementById('rutina-premium-' + tipo).classList.remove('oculto');
+      document.getElementById('tab-' + tipo + '-btn').classList.add('activa');
+    }
+
+    function agregarRutinaAlCarrito(ids) {
+      ids.forEach(id => {
+        agregarAlCarrito(null, parseInt(id));
+      });
+      mostrarNotificacion("Todos los productos de la rutina fueron añadidos.");
+    }
+
+    function comprarRutinaCompleta(ids) {
+      agregarRutinaAlCarrito(ids);
+      window.location.href = 'pages/carrito.html';
     }
   </script>
 </body>

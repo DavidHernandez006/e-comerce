@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo | BeautyShop</title>
+    <title>Catálogo Premium | LUMINA K-Beauty</title>
+    <meta name="description" content="Explora nuestro catálogo completo de belleza coreana. Filtra por categoría, precio y marca para encontrar tu ritual ideal.">
 
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="stylesheet" href="../css/modo-oscuro.css">
@@ -15,38 +16,79 @@
 
 <body class="pagina-catalogo">
 
-    <main class="contenedor-catalogo">
-
-        <div class="cabecera-catalogo">
-
-            <h1>
-                <i class="fa-solid fa-bag-shopping"></i>
-                Catálogo BeautyShop
-            </h1>
-
-            <p>
-                Explora nuestros productos de belleza y cuidado personal.
-            </p>
-
+    <header class="navbar-catalogo">
+        <div class="nav-brand">
+            <a href="../index.html">
+                <span class="logo-nombre">BeautyShop</span>
+            </a>
         </div>
+        <div class="nav-search-premium">
+            <i class="ph ph-magnifying-glass"></i>
+            <input type="text" placeholder="Buscar en el universo Lumina..." id="buscador-productos">
+            <div id="autocomplete-results" class="autocomplete-box"></div>
+        </div>
+        <div class="nav-actions">
+            <a href="favoritos.html" class="icon-btn">
+                <i class="ph ph-heart"></i>
+                <span class="badge-favs">0</span>
+            </a>
+            <a href="carrito.html" class="icon-btn">
+                <i class="ph ph-shopping-bag"></i>
+                <span class="badge-header">0</span>
+            </a>
+        </div>
+    </header>
 
-        <!-- FILTROS (opcionales para después) -->
-        <section class="barra-catalogo">
+    <main class="layout-catalogo">
+        <aside class="sidebar-filtros">
+            <div class="filtro-grupo">
+                <h3>Categorías</h3>
+                <div id="categorias-filtros" class="lista-filtros">
+                    <!-- Dinámico -->
+                </div>
+            </div>
 
-            <input
-                type="text"
-                placeholder="Buscar producto..."
-                id="buscador-productos">
+            <div class="filtro-grupo">
+                <h3>Precio</h3>
+                <div class="rango-precio">
+                    <input type="range" id="precio-range" min="0" max="300000" step="5000">
+                    <div class="precio-labels">
+                        <span>$0</span>
+                        <span id="precio-max-label">$300.000</span>
+                    </div>
+                </div>
+            </div>
 
+            <div class="filtro-grupo">
+                <h3>Calificación</h3>
+                <div class="estrellas-filtros">
+                    <label><input type="radio" name="rating" value="4"> ⭐⭐⭐⭐+ </label>
+                    <label><input type="radio" name="rating" value="3"> ⭐⭐⭐+ </label>
+                    <label><input type="radio" name="rating" value="0" checked> Todas </label>
+                </div>
+            </div>
+
+            <button id="btn-limpiar-filtros" class="btn-limpiar">Limpiar Filtros</button>
+        </aside>
+
+        <section class="contenido-catalogo">
+            <div class="barra-herramientas">
+                <p id="contador-productos">Mostrando 0 productos</p>
+                <div class="ordenamiento">
+                    <select id="select-orden">
+                        <option value="relevancia">Popularidad</option>
+                        <option value="precio-bajo">Precio: Menor a Mayor</option>
+                        <option value="precio-alto">Precio: Mayor a Menor</option>
+                        <option value="rating">Mejor Calificados</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- AQUÍ SE INSERTAN LOS PRODUCTOS DESDE JS -->
+            <div id="catalogo" class="fila-productos">
+                <!-- Se llenarán con JS -->
+            </div>
         </section>
-
-        <!-- AQUÍ SE INSERTAN LOS PRODUCTOS DESDE JS -->
-        <section
-            id="catalogo"
-            class="grid-catalogo">
-
-        </section>
-
     </main>
 
     <script src="../js/modo-oscuro.js"></script>

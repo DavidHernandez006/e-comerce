@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito - BeautyShop</title>
+    <title>Mi Carrito | LUMINA K-Beauty</title>
+    <meta name="description" content="Gestiona tus productos seleccionados y finaliza tu compra con seguridad en LUMINA.">
 
     <!-- CSS -->
     <link rel="stylesheet" href="../css/estilos.css">
@@ -47,6 +48,11 @@
 
             <h2>Resumen del Pedido</h2>
 
+            <div class="seccion-cupon">
+                <input type="text" id="input-cupon" placeholder="Cupón: LUMINA20">
+                <button id="btn-cupon">Aplicar</button>
+            </div>
+
             <p>
                 <span>Subtotal</span>
                 <span id="subtotal-carrito">$0</span>
@@ -62,11 +68,11 @@
                 <strong id="total-carrito">$0</strong>
             </p>
 
-            <button id="boton-comprar">
+            <button id="boton-comprar" class="btn-comprar">
                 Finalizar Compra
             </button>
 
-            <button id="boton-vaciar">
+            <button id="boton-vaciar" class="btn-vaciar">
                 Vaciar Carrito
             </button>
 
@@ -76,6 +82,7 @@
 
     <!-- IMPORTANTE -->
     <script src="../js/data.js"></script>
+    <script src="../js/main.js"></script>
     <script src="../js/carrito.js"></script>
 
 </body>
