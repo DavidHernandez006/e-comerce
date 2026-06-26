@@ -67,7 +67,7 @@ documento.addEventListener('DOMContentLoaded', () => {
                 categoria,
                 precio: parseFloat(precio),
                 descripcion,
-                imagen: 'placeholder.jpg'  // TODO: Implementar carga de imágenes
+                imagen: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&q=80&w=400'
             });
 
             alert('Producto publicado exitosamente');

@@ -16,21 +16,80 @@
   <link rel="stylesheet" href="../css/modo-oscuro.css">
   
   <style>
+    :root {
+        --primary-color: #FF69B4;
+        --bg-primary: #121212;
+        --bg-secondary: #1A1A1A;
+        --text-primary: #FFFFFF;
+        --text-secondary: #D8B4FE;
+        --border-color: rgba(255,255,255,0.08);
+        --danger-color: #ff3d3d;
+    }
+
+    body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
+    }
+
+    .navbar {
+        background: rgba(26, 26, 26, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 20px 50px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .logo span {
+        font-family: 'Playfair Display', serif;
+        font-size: 24px;
+        font-weight: 700;
+        background: linear-gradient(90deg, #FF69B4, #D8B4FE);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: .3s;
+    }
+
+    .nav-links a:hover {
+        color: white;
+    }
+
     .contenedor-favoritos {
       max-width: 1200px;
       margin: 0 auto;
       padding: 40px 20px;
+      animation: fadeUp 0.8s ease;
     }
 
     .encabezado-favoritos {
       margin-bottom: 40px;
+      text-align: center;
     }
 
     .titulo-favoritos {
-      font-size: 32px;
+      font-size: 42px;
       font-weight: 700;
       margin-bottom: 10px;
-      color: var(--text-primary);
+      font-family: 'Playfair Display', serif;
     }
 
     .contador-favoritos {
@@ -307,7 +366,7 @@
       return `
         <div class="tarjeta-favorito" onclick="irADetalleProducto(${producto.id})">
           <div class="imagen-favorito">
-            <img src="${producto.imagen}" alt="${producto.nombre}">
+            <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
             <button class="btn-eliminar-favorito" onclick="eliminarDelFavorito(event, ${producto.id})">
               <i class="ph ph-x"></i>
             </button>
@@ -329,55 +388,52 @@
       favoritos = favoritos.filter(id => id !== productoId);
       localStorage.setItem('favoritos', JSON.stringify(favoritos));
       cargarFavoritos();
+      if (typeof actualizarBadgesNav === 'function') actualizarBadgesNav();
       mostrarNotificacion('Producto eliminado de favoritos');
     }
 
     function agregarAlCarritoFavorito(event, productoId) {
       event.stopPropagation();
       
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      let key = "beautyshop-carrito";
+      let carrito = JSON.parse(localStorage.getItem(key)) || [];
       const producto = productos.find(p => p.id === productoId);
       
-      const itemExistente = carrito.find(item => item.id === productoId);
+      const itemExistente = carrito.find(item => item.productoId === productoId);
       if (itemExistente) {
         itemExistente.cantidad += 1;
       } else {
         carrito.push({
-          id: producto.id,
-          nombre: producto.nombre,
-          precio: producto.precio,
-          imagen: producto.imagen,
+          productoId: producto.id,
           cantidad: 1
         });
       }
       
-      localStorage.setItem('carrito', JSON.stringify(carrito));
+      localStorage.setItem(key, JSON.stringify(carrito));
       actualizarContadorCarrito();
       mostrarNotificacion(`${producto.nombre} agregado al carrito`);
     }
 
     function agregarTodoAlCarrito() {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      let key = "beautyshop-carrito";
+      let carrito = JSON.parse(localStorage.getItem(key)) || [];
       
       favoritos.forEach(id => {
         const producto = productos.find(p => p.id === id);
         if (producto) {
-          const itemExistente = carrito.find(item => item.id === id);
+          const itemExistente = carrito.find(item => item.productoId === id);
           if (itemExistente) {
             itemExistente.cantidad += 1;
           } else {
             carrito.push({
-              id: producto.id,
-              nombre: producto.nombre,
-              precio: producto.precio,
-              imagen: producto.imagen,
+              productoId: id,
               cantidad: 1
             });
           }
         }
       });
       
-      localStorage.setItem('carrito', JSON.stringify(carrito));
+      localStorage.setItem(key, JSON.stringify(carrito));
       actualizarContadorCarrito();
       mostrarNotificacion('Todos los favoritos se agregaron al carrito');
     }

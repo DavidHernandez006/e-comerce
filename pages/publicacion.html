@@ -359,17 +359,17 @@
       <!-- Galería -->
       <div class="galeria-producto">
         <div class="imagen-principal">
-          <img id="imagen-principal" src="" alt="Producto">
+          <img id="imagen-principal" src="" alt="Producto" onerror="handleImgError(this)" onload="handleImgLoad(this)">
         </div>
         <div class="miniaturas">
           <div class="miniatura activa" onclick="cambiarImagen(this)">
-            <img id="miniatura-1" src="" alt="Vista 1">
+            <img id="miniatura-1" src="" alt="Vista 1" onerror="handleImgError(this)" onload="handleImgLoad(this)">
           </div>
           <div class="miniatura" onclick="cambiarImagen(this)">
-            <img id="miniatura-2" src="" alt="Vista 2">
+            <img id="miniatura-2" src="" alt="Vista 2" onerror="handleImgError(this)" onload="handleImgLoad(this)">
           </div>
           <div class="miniatura" onclick="cambiarImagen(this)">
-            <img id="miniatura-3" src="" alt="Vista 3">
+            <img id="miniatura-3" src="" alt="Vista 3" onerror="handleImgError(this)" onload="handleImgLoad(this)">
           </div>
         </div>
       </div>
@@ -482,9 +482,26 @@
       document.getElementById('categoria-detalle').textContent = obtenerNombreCategoria(productoActual.categoriaId).toUpperCase();
       document.getElementById('titulo-detalle').textContent = productoActual.nombre;
       document.getElementById('descripcion-detalle').textContent = productoActual.descripcion;
-      document.getElementById('resenas-detalle').textContent = `(${productoActual.resenas} reseñas)`;
-      document.getElementById('estrellas').textContent = '⭐'.repeat(Math.floor(productoActual.calificacion));
+      document.getElementById('resenas-detalle').textContent = `(${productoActual.numOpiniones} opiniones)`;
+      document.getElementById('estrellas').textContent = '⭐'.repeat(Math.floor(productoActual.rating));
       document.getElementById('stock-disponible').textContent = `Stock: ${productoActual.stock}`;
+
+      // Badges
+      if (productoActual.badge) {
+          const badgeContainer = document.createElement('div');
+          badgeContainer.className = 'badge-container-detalle';
+          badgeContainer.style.display = 'flex';
+          badgeContainer.style.gap = '10px';
+          badgeContainer.style.marginTop = '10px';
+
+          const bEl = document.createElement('span');
+          bEl.className = 'badge-seccion';
+          bEl.textContent = productoActual.badge;
+          bEl.style.fontSize = '10px';
+          badgeContainer.appendChild(bEl);
+
+          document.querySelector('.encabezado-detalle').appendChild(badgeContainer);
+      }
 
       // Precio
       let precioHTML = `<span class="precio-detalle">${formatearPrecio(productoActual.precio)}</span>`;
@@ -512,16 +529,12 @@
           <div class="especificacion-valor">${obtenerNombreCategoria(productoActual.categoriaId)}</div>
         </div>
         <div class="especificacion-fila">
+          <div class="especificacion-label">Marca:</div>
+          <div class="especificacion-valor">${productoActual.marca}</div>
+        </div>
+        <div class="especificacion-fila">
           <div class="especificacion-label">Disponibilidad:</div>
           <div class="especificacion-valor">${productoActual.stock > 0 ? 'En Stock' : 'Sin Stock'}</div>
-        </div>
-        <div class="especificacion-fila">
-          <div class="especificacion-label">Vendedor:</div>
-          <div class="especificacion-valor">${productoActual.vendedor}</div>
-        </div>
-        <div class="especificacion-fila">
-          <div class="especificacion-label">Etiquetas:</div>
-          <div class="especificacion-valor">${productoActual.etiquetas.join(', ')}</div>
         </div>
       `;
       document.getElementById('especificaciones-container').innerHTML = especificacionesHTML;
@@ -568,22 +581,20 @@
     function agregarAlCarritoDetalle() {
       const cantidad = parseInt(document.getElementById('cantidad').value);
       
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      const itemExistente = carrito.find(item => item.id === productoActual.id);
+      let key = "beautyshop-carrito";
+      let carrito = JSON.parse(localStorage.getItem(key)) || [];
+      const itemExistente = carrito.find(item => item.productoId === productoActual.id);
 
       if (itemExistente) {
         itemExistente.cantidad += cantidad;
       } else {
         carrito.push({
-          id: productoActual.id,
-          nombre: productoActual.nombre,
-          precio: productoActual.precio,
-          imagen: productoActual.imagen,
+          productoId: productoActual.id,
           cantidad: cantidad
         });
       }
 
-      localStorage.setItem('carrito', JSON.stringify(carrito));
+      localStorage.setItem(key, JSON.stringify(carrito));
       actualizarContadorCarrito();
       mostrarNotificacion(`${cantidad} ${productoActual.nombre} agregado al carrito`);
     }

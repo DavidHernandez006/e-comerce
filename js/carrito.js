@@ -112,11 +112,16 @@ class Carrito {
       cantidadItems += item.cantidad;
     });
 
+    const factorCupon = parseFloat(localStorage.getItem("bs-descuento-cupon")) || 0;
+    const descuentoCupon = total * factorCupon;
+    total = total - descuentoCupon;
+
     return {
       subtotal: subtotal,
-      descuento: subtotal - total,
+      descuento: subtotal - total + descuentoCupon,
       total: total,
-      cantidadItems: cantidadItems
+      cantidadItems: cantidadItems,
+      descuentoCupon: descuentoCupon
     };
   }
 }
@@ -174,9 +179,10 @@ function renderizarCarrito() {
     if (botonComprar) botonComprar.disabled = false;
 
     lista.innerHTML = detalle.map(function(item) {
+      const imgSrc = item.imagen.startsWith('http') ? item.imagen : '../' + item.imagen;
       return (
         '<article class="item-carrito" data-id="' + item.id + '">' +
-          '<img src="../' + item.imagen + '" alt="' + item.nombre + '" class="imagen-item-carrito">' +
+          '<img src="' + imgSrc + '" alt="' + item.nombre + '" class="imagen-item-carrito" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">' +
           '<div class="info-item-carrito">' +
             '<h3>' + item.nombre + '</h3>' +
             '<p>' + formatearPrecio(item.precioUnitario) + ' c/u</p>' +
@@ -219,11 +225,35 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (botonComprar) {
       botonComprar.addEventListener("click", function() {
-        alert("¡Gracias por tu compra! (Proceso de pago en desarrollo)");
-        carrito.vaciar();
-        renderizarCarrito();
-        actualizarContadorCarrito();
+        if (carrito.items.length === 0) return;
+        const btnTexto = botonComprar.innerHTML;
+        botonComprar.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Procesando...';
+        botonComprar.disabled = true;
+
+        setTimeout(() => {
+            mostrarNotificacion("¡Compra realizada con éxito! Recibirás un correo pronto.");
+            carrito.vaciar();
+            renderizarCarrito();
+            actualizarContadorCarrito();
+            botonComprar.innerHTML = btnTexto;
+            botonComprar.disabled = false;
+        }, 2000);
       });
+    }
+
+    const inputCupon = document.getElementById("input-cupon");
+    const btnCupon = document.getElementById("btn-cupon");
+    if (btnCupon) {
+        btnCupon.addEventListener("click", () => {
+            const cupon = inputCupon.value.toUpperCase();
+            if (cupon === "LUMINA20") {
+                mostrarNotificacion("Cupón aplicado: 20% de descuento extra");
+                localStorage.setItem("bs-descuento-cupon", 0.20);
+                renderizarCarrito();
+            } else {
+                mostrarNotificacion("Cupón inválido");
+            }
+        });
     }
   }
 
