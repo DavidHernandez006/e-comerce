@@ -1,0 +1,11 @@
+- Nombre del Producto: LUMINA Midnight Glow – Bio-Ferment Glass Skin Night Serum
+- Descripción Comercial: Despierta con la luminosidad definitiva. Este sérum de culto, diseñado para el ritual nocturno, fusiona la sabiduría del K-Beauty con biotecnología de vanguardia. Su fórmula ligera y sedosa penetra profundamente mientras descansas, reparando la barrera cutánea y revelando ese acabado "Glass Skin" —liso, translúcido y radiante— al amanecer. Una experiencia sensorial envuelta en notas botánicas sutiles que transforma la regeneración celular en un acto de lujo puro.
+- Especificaciones:
+  - Complejo de Bio-Fermentos (Lactobacillus/Rice Ferment): Maximiza la absorción y fortalece el microbioma.
+  - Ácido Hialurónico Multimolecular: Hidratación en 5 niveles de profundidad.
+  - Extracto de Flor de Loto y Niacinamida (5%): Calma rojeces e ilumina el tono de forma instantánea.
+  - Textura: Oil-free, de rápida absorción, efecto "velvet finish".
+  - Envase: Vidrio iridiscente reciclable con sistema de goteo de precisión.
+  - Vegano, libre de crueldad animal y sin fragancias sintéticas.
+- PROMPT DE IMAGEN (Listo para copiar y pegar en el generador):
+  LUMINA Midnight Glow Serum, an elegant iridescent glass bottle with a minimalist label and rose gold dropper cap, placed on a polished dark obsidian stone surface, a single drop of translucent glowing liquid suspended from the dropper, surrounded by soft ripples of dark water reflecting a crescent moon, ethereal violet and pink bokeh lights in the background, [Estilo: fotografía de producto comercial de alta gama], [Iluminación: estudio, tres puntos, softbox], [Ángulo de cámara: macro o primer plano], [Fondo: limpio, minimalista, estudio], [Detalles técnicos: 8k, f/2.8, hyper-realistic, fotorrealismo].

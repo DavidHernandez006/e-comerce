@@ -278,48 +278,23 @@ function configurarFavoritos() {
 }
 
 /**
- * Agrega un producto al carrito
+ * Agrega un producto al carrito delegando en el CarritoManager
  */
 function agregarAlCarrito(event, productoId) {
   event.stopPropagation();
-  
-  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-  const producto = productos.find(p => p.id === productoId);
-  
-  if (!producto) return;
-  
-  const itemExistente = carrito.find(item => item.id === productoId);
-  
-  if (itemExistente) {
-    itemExistente.cantidad += 1;
+  if (typeof bsCarrito !== 'undefined') {
+    bsCarrito.agregar(productoId);
   } else {
-    carrito.push({
-      id: producto.id,
-      nombre: producto.nombre,
-      precio: producto.precio,
-      imagen: producto.imagen,
-      cantidad: 1
-    });
+    console.error("CarritoManager (bsCarrito) no está definido");
   }
-  
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  actualizarContadorCarrito();
-  
-  // Mostrar notificación
-  mostrarNotificacion(`${producto.nombre} agregado al carrito`);
 }
 
 /**
- * Actualiza el contador del carrito
+ * Actualiza el contador del carrito (ahora manejado reactivamente por bsCarrito)
  */
 function actualizarContadorCarrito() {
-  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-  const contador = carrito.reduce((total, item) => total + item.cantidad, 0);
-  
-  const badgeCarrito = document.querySelector('.badge-header');
-  if (badgeCarrito) {
-    badgeCarrito.textContent = contador;
-    badgeCarrito.style.display = contador > 0 ? 'inline' : 'none';
+  if (typeof bsCarrito !== 'undefined') {
+    bsCarrito._actualizarUI();
   }
 }
 
