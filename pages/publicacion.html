@@ -473,32 +473,35 @@
       }
 
       // Llenar información del producto
-      document.getElementById('imagen-principal').src = productoActual.imagen;
-      document.getElementById('miniatura-1').src = productoActual.imagen;
-      document.getElementById('miniatura-2').src = productoActual.imagen;
-      document.getElementById('miniatura-3').src = productoActual.imagen;
+      const imagenUrl = normalizarRutaImagen(productoActual.imagen);
+      document.getElementById('imagen-principal').src = imagenUrl;
+      document.getElementById('miniatura-1').src = imagenUrl;
+      document.getElementById('miniatura-2').src = imagenUrl;
+      document.getElementById('miniatura-3').src = imagenUrl;
 
       document.getElementById('breadcrumb-producto').textContent = productoActual.nombre;
       document.getElementById('categoria-detalle').textContent = obtenerNombreCategoria(productoActual.categoriaId).toUpperCase();
       document.getElementById('titulo-detalle').textContent = productoActual.nombre;
       document.getElementById('descripcion-detalle').textContent = productoActual.descripcion;
-      document.getElementById('resenas-detalle').textContent = `(${productoActual.numOpiniones} opiniones)`;
-      document.getElementById('estrellas').textContent = '⭐'.repeat(Math.floor(productoActual.rating));
+      document.getElementById('resenas-detalle').textContent = `(${productoActual.resenas} opiniones)`;
+      document.getElementById('estrellas').textContent = '⭐'.repeat(Math.floor(productoActual.calificacion));
       document.getElementById('stock-disponible').textContent = `Stock: ${productoActual.stock}`;
 
       // Badges
-      if (productoActual.badge) {
+      if (productoActual.badges && productoActual.badges.length > 0) {
           const badgeContainer = document.createElement('div');
           badgeContainer.className = 'badge-container-detalle';
           badgeContainer.style.display = 'flex';
           badgeContainer.style.gap = '10px';
           badgeContainer.style.marginTop = '10px';
 
-          const bEl = document.createElement('span');
-          bEl.className = 'badge-seccion';
-          bEl.textContent = productoActual.badge;
-          bEl.style.fontSize = '10px';
-          badgeContainer.appendChild(bEl);
+          productoActual.badges.forEach(badge => {
+            const bEl = document.createElement('span');
+            bEl.className = 'badge-seccion';
+            bEl.textContent = badge;
+            bEl.style.fontSize = '10px';
+            badgeContainer.appendChild(bEl);
+          });
 
           document.querySelector('.encabezado-detalle').appendChild(badgeContainer);
       }

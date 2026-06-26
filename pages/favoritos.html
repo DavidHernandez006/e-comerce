@@ -363,10 +363,11 @@
 
     function crearTarjetaFavoritoHTML(producto) {
       const precioFormateado = formatearPrecio(producto.precio);
+      const imagenUrl = normalizarRutaImagen(producto.imagen);
       return `
         <div class="tarjeta-favorito" onclick="irADetalleProducto(${producto.id})">
           <div class="imagen-favorito">
-            <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
+            <img src="${imagenUrl}" alt="${producto.nombre}" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">
             <button class="btn-eliminar-favorito" onclick="eliminarDelFavorito(event, ${producto.id})">
               <i class="ph ph-x"></i>
             </button>

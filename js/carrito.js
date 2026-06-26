@@ -179,10 +179,10 @@ function renderizarCarrito() {
     if (botonComprar) botonComprar.disabled = false;
 
     lista.innerHTML = detalle.map(function(item) {
-      const imgSrc = item.imagen.startsWith('http') ? item.imagen : '../' + item.imagen;
+      const imagenUrl = normalizarRutaImagen(item.imagen);
       return (
         '<article class="item-carrito" data-id="' + item.id + '">' +
-          '<img src="' + imgSrc + '" alt="' + item.nombre + '" class="imagen-item-carrito" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">' +
+          '<img src="' + imagenUrl + '" alt="' + item.nombre + '" class="imagen-item-carrito" loading="lazy" onerror="handleImgError(this)" onload="handleImgLoad(this)">' +
           '<div class="info-item-carrito">' +
             '<h3>' + item.nombre + '</h3>' +
             '<p>' + formatearPrecio(item.precioUnitario) + ' c/u</p>' +

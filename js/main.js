@@ -119,17 +119,32 @@ function mostrarProductosMasVendidos() {
 }
 
 /**
+ * Normaliza la ruta de la imagen según la ubicación actual
+ */
+function normalizarRutaImagen(ruta) {
+  if (!ruta) return "";
+  if (ruta.startsWith('http')) return ruta;
+
+  const isInsidePages = window.location.pathname.includes('/pages/');
+  if (isInsidePages && !ruta.startsWith('../')) {
+    return '../' + ruta;
+  }
+  return ruta;
+}
+
+/**
  * Crea el HTML de una tarjeta de producto estándar
  */
 function crearTarjetaProducto(producto) {
   const precioFormateado = formatearPrecio(producto.precio);
   let etiquetaHTML = obtenerEtiqueta(producto);
   const esFavorito = favoritos.includes(producto.id);
+  const imagenUrl = normalizarRutaImagen(producto.imagen);
   
   return `
     <article class="tarjeta-producto" onclick="irADetalleProducto(${producto.id})">
       <div class="contenedor-imagen-producto">
-        <img src="${producto.imagen}"
+        <img src="${imagenUrl}"
              alt="${producto.nombre}"
              class="imagen-producto"
              loading="lazy"
@@ -167,11 +182,12 @@ function crearTarjetaOferta(producto) {
   const precioFormateadoOriginal = formatearPrecio(precioOriginal);
   const precioFormateadoDescuento = formatearPrecio(precioConDescuento);
   const esFavorito = favoritos.includes(producto.id);
+  const imagenUrl = normalizarRutaImagen(producto.imagen);
   
   return `
     <article class="tarjeta-oferta" onclick="irADetalleProducto(${producto.id})">
       <div class="imagen-oferta">
-        <img src="${producto.imagen}"
+        <img src="${imagenUrl}"
              alt="${producto.nombre}"
              loading="lazy"
              onerror="handleImgError(this)"
@@ -203,11 +219,12 @@ function crearTarjetaOferta(producto) {
 function crearTarjetaVendida(producto) {
   const precioFormateado = formatearPrecio(producto.precio);
   const esFavorito = favoritos.includes(producto.id);
+  const imagenUrl = normalizarRutaImagen(producto.imagen);
   
   return `
     <article class="tarjeta-vendido" onclick="irADetalleProducto(${producto.id})">
       <div class="imagen-vendido">
-        <img src="${producto.imagen}"
+        <img src="${imagenUrl}"
              alt="${producto.nombre}"
              loading="lazy"
              onerror="handleImgError(this)"
@@ -379,7 +396,7 @@ function actualizarContadorCarrito() {
 function handleImgError(img) {
   img.classList.add('img-error');
   // Fallback to a placeholder that fits the luxury theme
-  img.src = "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&q=80&w=400";
+  img.src = normalizarRutaImagen("assets/products/placeholder.jpg");
 }
 
 function handleImgLoad(img) {
