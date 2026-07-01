@@ -1,16 +1,12 @@
-// ============================================================
-// traduccion.js — Sistema de multilenguaje
-// E-commerce de Belleza | BeautyShop
-// Soporta: Español (es) e Inglés (en)
-// ============================================================
+/**
+ * js/traduccion.js — Sistema de multilenguaje refactorizado
+ */
 
-// Idioma actual
-let idiomaActual = localStorage.getItem('idioma') || 'es';
+import { store } from './store.js';
 
-// Base de datos de traducciones
-const idiomas = {
+// Base de datos completa de traducciones
+const translations = {
   es: {
-    // Navegación
     'inicio': 'Inicio',
     'catalogo': 'Catálogo',
     'carrito': 'Carrito',
@@ -20,16 +16,12 @@ const idiomas = {
     'admin': 'Administrador',
     'cerrar_sesion': 'Cerrar Sesión',
     'publicar': 'Publicar Producto',
-
-    // Categorías
     'maquillaje': 'Maquillaje',
     'cuidado_facial': 'Cuidado Facial',
     'cuidado_corporal': 'Cuidado Corporal',
     'cabello': 'Cabello',
     'fragancias': 'Fragancias',
     'unas': 'Uñas',
-
-    // Botones
     'comprar': 'Comprar',
     'agregar_carrito': 'Agregar al Carrito',
     'continuar': 'Continuar',
@@ -41,8 +33,6 @@ const idiomas = {
     'filtrar': 'Filtrar',
     'pagar': 'Pagar',
     'confirmar': 'Confirmar',
-
-    // Carrito
     'carrito_vacio': 'Tu carrito está vacío',
     'subtotal': 'Subtotal',
     'envio': 'Envío',
@@ -50,8 +40,6 @@ const idiomas = {
     'total': 'Total',
     'cantidad': 'Cantidad',
     'precio_unitario': 'Precio Unitario',
-
-    // Login/Registro
     'correo': 'Correo Electrónico',
     'contrasena': 'Contraseña',
     'confirmar_contrasena': 'Confirmar Contraseña',
@@ -65,8 +53,6 @@ const idiomas = {
     'olvide_contrasena': '¿Olvidaste tu contraseña?',
     'no_tienes_cuenta': '¿No tienes cuenta?',
     'ya_tienes_cuenta': '¿Ya tienes cuenta?',
-
-    // Productos
     'descripcion': 'Descripción',
     'precio': 'Precio',
     'stock': 'Stock',
@@ -78,8 +64,6 @@ const idiomas = {
     'nuevo': 'Nuevo',
     'bestseller': 'Bestseller',
     'oferta': 'Oferta',
-
-    // Mensajes
     'bienvenido': 'Bienvenido',
     'error': 'Error',
     'exito': 'Éxito',
@@ -91,19 +75,13 @@ const idiomas = {
     'contrasena_debil': 'La contraseña es muy débil',
     'producto_agregado': 'Producto agregado al carrito',
     'producto_eliminado': 'Producto eliminado del carrito',
-
-    // Modo oscuro
     'modo_oscuro': 'Modo Oscuro',
     'modo_claro': 'Modo Claro',
-
-    // Perfil
     'mi_perfil': 'Mi Perfil',
     'mis_compras': 'Mis Compras',
     'mis_publicaciones': 'Mis Publicaciones',
     'configuracion': 'Configuración',
     'editar_perfil': 'Editar Perfil',
-
-    // Ordenes
     'mis_ordenes': 'Mis Órdenes',
     'numero_orden': 'Número de Orden',
     'fecha_orden': 'Fecha',
@@ -111,10 +89,9 @@ const idiomas = {
     'pendiente': 'Pendiente',
     'enviado': 'Enviado',
     'entregado': 'Entregado',
-    'cancelado': 'Cancelado',
+    'cancelado': 'Cancelado'
   },
   en: {
-    // Navigation
     'inicio': 'Home',
     'catalogo': 'Catalog',
     'carrito': 'Cart',
@@ -124,16 +101,12 @@ const idiomas = {
     'admin': 'Admin',
     'cerrar_sesion': 'Sign Out',
     'publicar': 'Publish Product',
-
-    // Categories
     'maquillaje': 'Makeup',
     'cuidado_facial': 'Skincare',
     'cuidado_corporal': 'Body Care',
     'cabello': 'Hair',
     'fragancias': 'Fragrances',
     'unas': 'Nails',
-
-    // Buttons
     'comprar': 'Buy',
     'agregar_carrito': 'Add to Cart',
     'continuar': 'Continue',
@@ -145,8 +118,6 @@ const idiomas = {
     'filtrar': 'Filter',
     'pagar': 'Pay',
     'confirmar': 'Confirm',
-
-    // Cart
     'carrito_vacio': 'Your cart is empty',
     'subtotal': 'Subtotal',
     'envio': 'Shipping',
@@ -154,8 +125,6 @@ const idiomas = {
     'total': 'Total',
     'cantidad': 'Quantity',
     'precio_unitario': 'Unit Price',
-
-    // Login/Register
     'correo': 'Email',
     'contrasena': 'Password',
     'confirmar_contrasena': 'Confirm Password',
@@ -169,8 +138,6 @@ const idiomas = {
     'olvide_contrasena': 'Forgot your password?',
     'no_tienes_cuenta': "Don't have an account?",
     'ya_tienes_cuenta': 'Already have an account?',
-
-    // Products
     'descripcion': 'Description',
     'precio': 'Price',
     'stock': 'Stock',
@@ -182,8 +149,6 @@ const idiomas = {
     'nuevo': 'New',
     'bestseller': 'Bestseller',
     'oferta': 'Offer',
-
-    // Messages
     'bienvenido': 'Welcome',
     'error': 'Error',
     'exito': 'Success',
@@ -195,19 +160,13 @@ const idiomas = {
     'contrasena_debil': 'Password is too weak',
     'producto_agregado': 'Product added to cart',
     'producto_eliminado': 'Product removed from cart',
-
-    // Dark Mode
     'modo_oscuro': 'Dark Mode',
     'modo_claro': 'Light Mode',
-
-    // Profile
     'mi_perfil': 'My Profile',
     'mis_compras': 'My Purchases',
     'mis_publicaciones': 'My Publications',
     'configuracion': 'Settings',
     'editar_perfil': 'Edit Profile',
-
-    // Orders
     'mis_ordenes': 'My Orders',
     'numero_orden': 'Order Number',
     'fecha_orden': 'Date',
@@ -215,69 +174,58 @@ const idiomas = {
     'pendiente': 'Pending',
     'enviado': 'Shipped',
     'entregado': 'Delivered',
-    'cancelado': 'Cancelled',
+    'cancelado': 'Cancelled'
   }
 };
 
-// ============================================================
-// FUNCIONES
-// ============================================================
-
-/**
- * Traduce una clave al idioma actual
- * @param {string} clave - Clave de la traducción
- * @param {object} parametros - Parámetros para reemplazar en la traducción
- * @returns {string} Texto traducido
- */
-function t(clave, parametros = {}) {
-  let texto = idiomas[idiomaActual]?.[clave] || clave;
-  
-  // Reemplazar parámetros si existen
-  for (let [param, valor] of Object.entries(parametros)) {
-    texto = texto.replace(`{${param}}`, valor);
+export class TranslationManager {
+  constructor() {
+    this.init();
+    store.subscribe(() => this.updateUI());
   }
-  
-  return texto;
-}
 
-/**
- * Cambia el idioma actual y actualiza la interfaz
- * @param {string} nuevoIdioma - Código del idioma ('es' o 'en')
- */
-function cambiarIdioma(nuevoIdioma) {
-  if (idiomas[nuevoIdioma]) {
-    idiomaActual = nuevoIdioma;
-    localStorage.setItem('idioma', nuevoIdioma);
-    actualizarInterfaz();
+  init() {
+    this.updateUI();
+    // Botones de cambio de idioma si existen
+    document.addEventListener('click', (e) => {
+      if (e.target.id === 'btn-es') this.setLang('es');
+      if (e.target.id === 'btn-en') this.setLang('en');
+    });
   }
-}
 
-/**
- * Obtiene el idioma actual
- * @returns {string} Código del idioma actual
- */
-function obtenerIdiomaActual() {
-  return idiomaActual;
-}
-
-/**
- * Actualiza todos los elementos que tengan el atributo data-t
- */
-function actualizarInterfaz() {
-  document.querySelectorAll('[data-t]').forEach(elemento => {
-    const clave = elemento.getAttribute('data-t');
-    if (elemento.tagName === 'INPUT' && elemento.type === 'submit') {
-      elemento.value = t(clave);
-    } else if (elemento.tagName === 'INPUT' && elemento.type === 'placeholder') {
-      elemento.placeholder = t(clave);
-    } else {
-      elemento.textContent = t(clave);
+  t(key, params = {}) {
+    const lang = store.getLang();
+    let text = translations[lang]?.[key] || key;
+    for (let [param, value] of Object.entries(params)) {
+      text = text.replace(`{${param}}`, value);
     }
-  });
+    return text;
+  }
 
-  // Disparar evento personalizado
-  document.dispatchEvent(new CustomEvent('idioma-cambiado', { detail: { idioma: idiomaActual } }));
+  setLang(lang) {
+    if (translations[lang]) {
+      store.setLang(lang);
+    }
+  }
+
+  updateUI() {
+    document.querySelectorAll('[data-t]').forEach(el => {
+      const key = el.getAttribute('data-t');
+      if (el.tagName === 'INPUT' && el.type === 'submit') {
+        el.value = this.t(key);
+      } else if (el.tagName === 'INPUT' && el.placeholder) {
+        el.placeholder = this.t(key);
+      } else {
+        el.textContent = this.t(key);
+      }
+    });
+
+    // Disparar evento para compatibilidad si es necesario
+    document.dispatchEvent(new CustomEvent('idioma-cambiado', {
+      detail: { idioma: store.getLang() }
+    }));
+  }
 }
 
-// Ejecutar actualización al cargar la página
-document.addEventListener('DOMContentLoaded', actualizarInterfaz);
+export const i18n = new TranslationManager();
+window.i18n = i18n; // Exponer globalmente para handlers inline si quedan
